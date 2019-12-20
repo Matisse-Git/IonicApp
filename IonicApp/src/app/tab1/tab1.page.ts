@@ -14,18 +14,26 @@ export class Tab1Page {
   constructor(private client: HttpClient, private service: APIService, private router: Router) {}
 
   Users : IUser[] = [];
+  currentPage: number = 1;
 
   ngOnInit(){
-    this.service.getUsers().subscribe(users =>{
+    this.service.getUsersByPage(this.currentPage).subscribe(users =>{
       users.data.forEach(user => {
         this.Users.push(user);
       });
     })
   }
 
-  test(email: String){
+  getUsersPage(page: number){
+    this.currentPage = page;
+    this.service.getUsersByPage(this.currentPage).subscribe(users =>{
+        this.Users = users.data;
+    })
+  }
+
+  test(user: IUser){
     this.router.navigate(['/tabs/tab3'])
-    this.service.displayEmail(email);
+    this.service.displayEmail(user);
   }
 
 }

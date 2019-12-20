@@ -6,4 +6,12 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">user id</ion-label>
+    <ion-input #userID type="number"></ion-input>
+  </ion-item>
+  <ion-button (click)="getUser(userID.value)">Get User!</ion-button>
+  <ion-header *ngIf="currentUser">{{currentUser.first_name}}</ion-header>
+  <ion-img *ngIf="currentUser" [src]="currentUser.avatar"></ion-img>
+</ion-content>

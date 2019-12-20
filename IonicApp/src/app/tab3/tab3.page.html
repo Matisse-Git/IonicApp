@@ -1,11 +1,15 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      {{email}}
+      {{currentUser.first_name}} {{currentUser.last_name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-header>{{email}}</ion-header>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" pull-min="80">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-header>{{currentUser.email}}</ion-header>
+  <ion-img [src]="currentUser.avatar"></ion-img>
 </ion-content>
