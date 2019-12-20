@@ -9,22 +9,31 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export class APIService {
 
-  currentUser: String;
+  currentUser: IUser;
 
   constructor(private client:HttpClient) { }
 
-  getUsers(){
-    return this.client.get<IData>('https://reqres.in/api/users')
+  getUsersByPage(page: number){
+    return this.client.get<IData>('https://reqres.in/api/users?page=' + page);
   }
 
-  displayEmail(emailIn: String){
-    this.currentUser = emailIn;
+  getUserById(id: number){
+    console.log(id);
+    return this.client.get<IDataSingle>('https://reqres.in/api/users/' + id);
+  }
+
+  displayEmail(userIn: IUser){
+    this.currentUser = userIn;
   }
 
 }
 
 interface IData{
   data: IUser[];
+}
+
+interface IDataSingle{
+  data: IUser;
 }
 
 interface IUser{

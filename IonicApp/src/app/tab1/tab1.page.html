@@ -11,11 +11,13 @@
       <ion-list-header>
         <ion-label>People</ion-label>
       </ion-list-header>
-      <ion-item *ngFor="let user of Users" (click)="test(user.email)">
+      <ion-item *ngFor="let user of Users" (click)="test(user)">
         <ion-label>{{user.first_name}}</ion-label>
         <ion-label>{{user.last_name}}</ion-label>
         <ion-img  class="profilePics" [src]="user.avatar"></ion-img>
       </ion-item>
+      <ion-button (click)="getUsersPage(1)">Page 1</ion-button>
+      <ion-button (click)="getUsersPage(2)">Page 2</ion-button>
       <ion-button [routerLink]="['/tabs/tab2']">Go to tab 2</ion-button>
     </ion-list>
 </ion-content>
