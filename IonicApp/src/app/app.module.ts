@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -22,3 +23,18 @@ import { AppComponent } from './app.component';
   bootstrap: [AppComponent]
 })
 export class AppModule {}
+
+export interface IAppConfig {
+    gamesEndpoint: string;
+}
+
+export interface IGame{
+  name: String;
+  genres: number[];
+  rating: number;
+  summary: String;
+}
+
+export const AppConfig: IAppConfig = {    
+  gamesEndpoint: "http://localhost:8100/games/"    
+};

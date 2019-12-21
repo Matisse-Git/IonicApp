@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AngularDelegate } from '@ionic/angular';
+import { IGame } from './app.module';
 
 
 @Injectable({
@@ -15,6 +17,10 @@ export class APIService {
 
   getUsersByPage(page: number){
     return this.client.get<IData>('https://reqres.in/api/users?page=' + page);
+  }
+
+  getGames(){
+    return this.client.post<IGame>("https://api-v3.igdb.com/games", 'where name = "Monster Hunter: World";', { headers: new HttpHeaders().set("user-key", "4a0db999fca4a913efcf9f2dcf01388a")})
   }
 
   getUserById(id: number){
@@ -43,3 +49,7 @@ interface IUser{
   last_name: String;
   avatar: String;
 }
+
+
+
+

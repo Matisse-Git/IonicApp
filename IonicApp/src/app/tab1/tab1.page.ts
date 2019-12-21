@@ -16,6 +16,8 @@ export class Tab1Page {
   Users : IUser[] = [];
   currentPage: number = 1;
 
+  currentGame: IGame;
+
   ngOnInit(){
     this.service.getUsersByPage(this.currentPage).subscribe(users =>{
       users.data.forEach(user => {
@@ -24,9 +26,15 @@ export class Tab1Page {
     })
   }
 
-  getUsersPage(page: number){
+  getGames(){
+    this.service.getGames().subscribe(game =>{
+      this.currentGame = game;
+    })
+  }
+
+  async getUsersPage(page: number){
     this.currentPage = page;
-    this.service.getUsersByPage(this.currentPage).subscribe(users =>{
+    await this.service.getUsersByPage(this.currentPage).subscribe(users =>{
         this.Users = users.data;
     })
   }
@@ -44,4 +52,11 @@ interface IUser{
   first_name: String;
   last_name: String;
   avatar: String;
+}
+
+interface IGame{
+  name: String;
+  genres: number[];
+  rating: number;
+  summary: String;
 }

@@ -4,5 +4,12 @@
     "capacitor": {},
     "cordova": {}
   },
-  "type": "angular"
+  "type": "angular",
+  "proxies": [
+    {
+      "path": "/games",
+      "proxyUrl": "https://api-v3.igdb.com/games"
+    }
+  ]
+  
 }

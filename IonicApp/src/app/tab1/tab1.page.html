@@ -16,8 +16,14 @@
         <ion-label>{{user.last_name}}</ion-label>
         <ion-img  class="profilePics" [src]="user.avatar"></ion-img>
       </ion-item>
-      <ion-button (click)="getUsersPage(1)">Page 1</ion-button>
-      <ion-button (click)="getUsersPage(2)">Page 2</ion-button>
+      <ion-button (click)="getUsersPage(1, $event)" (ionRefresh)="getUsersPage(1, $event)">Page 1</ion-button>
+      <ion-button (click)="getUsersPage(2, $event)"  (ionRefresh)="getUsersPage(2, $event)" >Page 2</ion-button>
       <ion-button [routerLink]="['/tabs/tab2']">Go to tab 2</ion-button>
+      <ion-item *ngIf="currentGame">
+        <ion-label>{{currentGame.name}}</ion-label>
+        <ion-label>{{currentGame.summary}}</ion-label>
+      </ion-item>
+      <ion-button (click)="getGames()">Get Game</ion-button>
+
     </ion-list>
 </ion-content>
