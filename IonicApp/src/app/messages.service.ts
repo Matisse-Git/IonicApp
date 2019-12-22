@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ToastController, LoadingController } from '@ionic/angular';
+import { ToastController, LoadingController, PopoverController } from '@ionic/angular';
+import { Tab2Page } from './tab2/tab2.page';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessagesService {
 
-  constructor(private toastController: ToastController, private loadingController: LoadingController) { }
+  constructor(private toastController: ToastController, private loadingController: LoadingController,
+    public popoverController: PopoverController) { }
 
   async presentToast() {
     const toast = await this.toastController.create({
@@ -14,6 +16,15 @@ export class MessagesService {
       duration: 2000
     });
     toast.present();
+  }
+
+async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: Tab2Page,
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
   }
 
   async presentLoading() {

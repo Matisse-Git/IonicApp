@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 
@@ -10,18 +10,22 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GamedetailsComponent } from './gamedetails/gamedetails.component';
-
+import { IonicGestureConfig } from './IonicGestureConfig';
+import { LongPressModule } from 'ionic-long-press';
+import { SearchpressComponent } from './searchpress/searchpress.component';
 
 @NgModule({
-  declarations: [AppComponent, GamedetailsComponent],
-  entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
+  declarations: [AppComponent, GamedetailsComponent, SearchpressComponent],
+  entryComponents: [SearchpressComponent],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, LongPressModule],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [ SearchpressComponent ]
 })
 export class AppModule {}
 
@@ -43,6 +47,7 @@ export interface IGame{
   genres: IGenres[];
   background_image: String; 
   platforms: IPlatforms[];
+  score: number;
 }
 
 export interface IGenres{

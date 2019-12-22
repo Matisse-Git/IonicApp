@@ -6,6 +6,9 @@ import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { GamedetailsService } from '../gamedetails.service';
+import { PopoverController } from '@ionic/angular';
+import { MessagesService } from '../messages.service';
+import { SearchpressComponent } from '../searchpress/searchpress.component';
 
 @Component({
   selector: 'app-tab2',
@@ -17,7 +20,8 @@ export class Tab2Page {
   currentGames: IGame[] = [];
 
   constructor(private service: APIService, public toastController: ToastController,
-    public loadingController: LoadingController, private router: Router, private detail: GamedetailsService) { }
+    public loadingController: LoadingController, private router: Router, private detail: GamedetailsService
+    ,public popoverController: PopoverController) { }
 
   ngOnInit() { }
 
@@ -30,6 +34,19 @@ export class Tab2Page {
         });
       })
     }
+  }
+
+  async presentPopover(ev: any, gameIn: IGame) {
+    this.detail.setGame(gameIn);
+    console.log("longpressed")
+    const popover = await this.popoverController.create({
+      component: SearchpressComponent,
+      event: ev,
+      translucent: true,
+      mode: "ios"
+    });
+    return await popover.present();
+    
   }
 
   clearInput(event){
