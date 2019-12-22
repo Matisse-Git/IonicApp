@@ -1,17 +1,19 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Two
+      Search
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">user id</ion-label>
-    <ion-input #userID type="number"></ion-input>
+  <ion-searchbar (ionChange)="getGameById(gameID.value)" mode="ios" #gameID placeholder="Search Game"></ion-searchbar>
+
+  <ion-item class="item-text-wrap" mode="ios" detail="true" *ngFor="let game of currentGames">
+    <ion-label class="name">{{game.name}} 
+      <ion-label class="genre">
+        <ion-text color="medium" *ngFor="let platform of game.platforms">{{platform.platform.name}}, </ion-text>
+      </ion-label>
+    </ion-label>
   </ion-item>
-  <ion-button (click)="getUser(userID.value)">Get User!</ion-button>
-  <ion-header *ngIf="currentUser">{{currentUser.first_name}}</ion-header>
-  <ion-img *ngIf="currentUser" [src]="currentUser.avatar"></ion-img>
 </ion-content>

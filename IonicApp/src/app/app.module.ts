@@ -28,11 +28,34 @@ export interface IAppConfig {
     gamesEndpoint: string;
 }
 
+export interface IResults{
+  results: IGame[];
+}
+
 export interface IGame{
   name: String;
-  genres: number[];
+  id: number;
   rating: number;
-  summary: String;
+  metacritic: number;
+  released: String;
+  description: String;
+  genres: IGenres[];
+  background_image: String; 
+  platforms: IPlatforms[];
+}
+
+export interface IGenres{
+  id: number;
+  name: String;
+}
+
+export interface IPlatforms{
+  platform: IPlatform;
+}
+
+export interface IPlatform{
+  id: number;
+  name: String;
 }
 
 export const AppConfig: IAppConfig = {    

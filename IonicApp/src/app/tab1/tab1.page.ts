@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { APIService } from '../api.service'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router'
+import { IGame } from '../app.module';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 
 @Component({
@@ -11,52 +13,25 @@ import { Router } from '@angular/router'
 })
 export class Tab1Page {
 
-  constructor(private client: HttpClient, private service: APIService, private router: Router) {}
+  constructor(private client: HttpClient, private service: APIService, private router: Router, private statusBar: StatusBar) {
+    this.statusBar.hide();
+  }
 
-  Users : IUser[] = [];
-  currentPage: number = 1;
-
-  currentGame: IGame;
+  currentGames: IGame[] = [];
 
   ngOnInit(){
-    this.service.getUsersByPage(this.currentPage).subscribe(users =>{
-      users.data.forEach(user => {
-        this.Users.push(user);
+    this.service.getGames().subscribe(game =>{
+      game.results.forEach(element => {
+        this.currentGames.push(element);
       });
     })
   }
 
   getGames(){
     this.service.getGames().subscribe(game =>{
-      this.currentGame = game;
+      game.results.forEach(element => {
+        this.currentGames.push(element);
+      });
     })
   }
-
-  async getUsersPage(page: number){
-    this.currentPage = page;
-    await this.service.getUsersByPage(this.currentPage).subscribe(users =>{
-        this.Users = users.data;
-    })
-  }
-
-  test(user: IUser){
-    this.router.navigate(['/tabs/tab3'])
-    this.service.displayEmail(user);
-  }
-
-}
-
-interface IUser{
-  id: number;
-  email: String;
-  first_name: String;
-  last_name: String;
-  avatar: String;
-}
-
-interface IGame{
-  name: String;
-  genres: number[];
-  rating: number;
-  summary: String;
 }
