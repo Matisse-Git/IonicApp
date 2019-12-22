@@ -4,6 +4,8 @@ import { APIService } from '../api.service';
 import { IGame } from '../app.module';
 import { ToastController } from '@ionic/angular';
 import { LoadingController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { GamedetailsService } from '../gamedetails.service';
 
 @Component({
   selector: 'app-tab2',
@@ -15,7 +17,7 @@ export class Tab2Page {
   currentGames: IGame[] = [];
 
   constructor(private service: APIService, public toastController: ToastController,
-    public loadingController: LoadingController) { }
+    public loadingController: LoadingController, private router: Router, private detail: GamedetailsService) { }
 
   ngOnInit() { }
 
@@ -30,31 +32,13 @@ export class Tab2Page {
     }
   }
 
-  async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'Game Found!',
-      duration: 2000
-    });
-    toast.present();
+  clearInput(event){
+    event.target.value = '';
   }
 
-  async presentLoading(query: String) {
-    if (query != "") {
-      const loading = await this.loadingController.create({
-        message: 'Searching...',
-        duration: 200,
-        mode: "ios",
-        spinner: "circular",
-        translucent: false,
-        animated: true
-      });
-      await loading.present();
-
-      const { role, data } = await loading.onDidDismiss();
-
-      console.log('Loading dismissed!');
-    }
+  goToDetails(gameIn: IGame){
+    this.detail.setGame(gameIn);
+    this.router.navigate(['details'])
   }
-
 }
 

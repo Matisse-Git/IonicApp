@@ -1,0 +1,15 @@
+<ion-header *ngIf="currentGame">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title slot="start">
+      {{currentGame.name}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-img class="cover" [src]="currentGame.background_image"></ion-img>
+  <ion-text [innerHTML]="currentGame.description"></ion-text>
+</ion-content>

@@ -9,10 +9,11 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { GamedetailsComponent } from './gamedetails/gamedetails.component';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, GamedetailsComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
