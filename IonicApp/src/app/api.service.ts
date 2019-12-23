@@ -18,6 +18,10 @@ export class APIService {
     return this.client.get<IResults>("https://api.rawg.io/api/games");
   }
 
+  getGameDetailed(gameID: number){
+    return this.client.get<IGame>("https://api.rawg.io/api/games/" + gameID);
+  }
+
   searchGames(query: String){
     return this.client.get<IResults>("https://api.rawg.io/api/games?search=" + query);
   }

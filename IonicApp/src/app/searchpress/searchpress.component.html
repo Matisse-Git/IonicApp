@@ -8,8 +8,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-item>
-      {{currentGame.metacritic}}
-    </ion-item>
+      <ion-label [color]="good ? 'success' : (meh ? 'warning' : 'danger')" class="metacritic">
+        {{currentGame.metacritic}}
+      </ion-label>
   </ion-list>
 </ion-content>
+
+<div ></div>

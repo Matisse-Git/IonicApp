@@ -13,11 +13,12 @@ import { GamedetailsComponent } from './gamedetails/gamedetails.component';
 import { IonicGestureConfig } from './IonicGestureConfig';
 import { LongPressModule } from 'ionic-long-press';
 import { SearchpressComponent } from './searchpress/searchpress.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, GamedetailsComponent, SearchpressComponent],
   entryComponents: [SearchpressComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, LongPressModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, LongPressModule, IonicModule, FormsModule],
   providers: [
     StatusBar,
     SplashScreen,

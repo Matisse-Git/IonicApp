@@ -1,15 +1,33 @@
 <ion-header *ngIf="currentGame">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button color="success"></ion-back-button>
     </ion-buttons>
     <ion-title slot="start">
       {{currentGame.name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <ion-img class="cover" [src]="currentGame.background_image"></ion-img>
-  <ion-text [innerHTML]="currentGame.description"></ion-text>
+  <div class="segmenter">
+    <ion-segment [(ngModel)]="segment" value="info" padding color="success" mode="ios">
+      <ion-segment-button value="info" mode="ios">
+        Info
+      </ion-segment-button>
+      <ion-segment-button value="description" mode="ios">
+        Description
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+
+  <div [ngSwitch]="segment">
+    <ion-card *ngSwitchCase="'info'">
+      <ion-img class="cover" [src]="currentGame.background_image"></ion-img>
+    </ion-card>
+
+    <ion-card *ngSwitchCase="'description'">
+      <div [innerHTML]="currentGame.description"></div>
+    </ion-card>
+  </div>
 </ion-content>

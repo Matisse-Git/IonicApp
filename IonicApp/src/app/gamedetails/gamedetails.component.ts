@@ -15,6 +15,7 @@ export class GamedetailsComponent implements OnInit {
 
   ngOnInit() {
     this.currentGame = this.detail.getGame();
+    console.log(this.currentGame)
   }
 
 }

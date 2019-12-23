@@ -54,8 +54,12 @@ export class Tab2Page {
   }
 
   goToDetails(gameIn: IGame){
-    this.detail.setGame(gameIn);
-    this.router.navigate(['details'])
+    this.service.getGameDetailed(gameIn.id).subscribe(game => {
+      this.detail.setGame(game);
+      console.log("game set")
+      this.router.navigate(['details'])
+      console.log("routed")
+    })
   }
 }
 
