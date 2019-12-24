@@ -16,3 +16,25 @@
 .genre{
     font-size: 8pt;
 }
+
+img{
+    width:100%;
+    height:100%;
+    opacity: 0.5;
+  }
+  
+  ion-card{
+    position:relative;
+  
+  }
+  
+  div{
+      width: 100%;
+      height: 60px;
+      position: absolute;
+      z-index: 99;
+      bottom: 0px;
+      text-align: center;
+      color: #fff;
+  
+  }
