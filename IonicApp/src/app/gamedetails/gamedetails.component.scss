@@ -11,8 +11,22 @@ ion-backdrop {
 ion-segment{
     width: 50%;
     margin: auto;
-
 }
+
+.description{
+    font-size: 10pt;
+}
+
+.genres{
+    display: inline;
+}
+
+ion-img{
+    height: 10em;
+    object-fit: cover;
+    border-radius: 20%;
+}
+
 ion-segment-button{
     width: 10em;
 }

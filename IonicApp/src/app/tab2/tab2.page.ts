@@ -61,5 +61,7 @@ export class Tab2Page {
       console.log("routed")
     })
   }
+
+  
 }
 

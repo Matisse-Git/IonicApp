@@ -18,4 +18,9 @@ export class GamedetailsComponent implements OnInit {
     console.log(this.currentGame)
   }
 
+  segmentChanged(ev: any) { 
+    console.log('Segment changed', ev);
+  }
+
+
 }
