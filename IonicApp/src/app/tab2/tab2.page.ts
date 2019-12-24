@@ -18,10 +18,12 @@ import { SearchpressComponent } from '../searchpress/searchpress.component';
 export class Tab2Page {
 
   currentGames: IGame[] = [];
+  skeletonItems: String[] = [];
+  skeleton: boolean;
 
   constructor(private service: APIService, public toastController: ToastController,
     public loadingController: LoadingController, private router: Router, private detail: GamedetailsService
-    ,public popoverController: PopoverController, private messages: MessagesService) { }
+    , public popoverController: PopoverController, private messages: MessagesService) { }
 
   ngOnInit() { }
 
@@ -32,12 +34,28 @@ export class Tab2Page {
         games.results.forEach(element => {
           this.currentGames.push(element);
         });
-        if (this.currentGames.length == 0 && query != ''){
+        this.skeleton = false;
+        if (this.currentGames.length == 0 && query != '') {
           this.messages.presentToast('No Games Found...', 2000)
         }
+
       })
     }
 
+  }
+
+  showSkeleton(query: String) {
+    if (query != '') {
+      for (let index = 0; index < 15; index++) {
+        if (this.skeletonItems.length < 15) {
+          this.skeletonItems.push("")
+        }
+      }
+      this.skeleton = true;
+    }
+    else{
+      this.skeleton = false;
+    }
   }
 
   async presentPopover(ev: any, gameIn: IGame) {
@@ -50,14 +68,14 @@ export class Tab2Page {
       mode: "ios"
     });
     return await popover.present();
-    
+
   }
 
-  clearInput(event){
+  clearInput(event) {
     event.target.value = '';
   }
 
-  goToDetails(gameIn: IGame){
+  goToDetails(gameIn: IGame) {
     this.service.getGameDetailed(gameIn.id).subscribe(game => {
       this.detail.setGame(game);
       console.log("game set")
@@ -66,6 +84,6 @@ export class Tab2Page {
     })
   }
 
-  
+
 }
 
