@@ -1,8 +1,8 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button color="success"></ion-back-button>
-      </ion-buttons>  
+    <ion-buttons slot="start">
+      <ion-back-button color="success"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Search Name
     </ion-title>
@@ -10,20 +10,26 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar debounce="400" (ionInput)="showSkeleton(gameID.value)" (ionChange)="getGameById(gameID.value)" mode="ios" #gameID placeholder="Search Game"></ion-searchbar>
+  <ion-searchbar debounce="400" (ionInput)="showSkeleton(gameID.value)" (ionChange)="getGameById(gameID.value)"
+    mode="ios" #gameID placeholder="Search Game"></ion-searchbar>
+  <div *ngIf="!skeleton">
+    <ion-card (press)="presentPopover($event, game)" (click)="goToDetails(game)" class="item-text-wrap" mode="ios"
+      detail="true" *ngFor="let game of currentGames">
+      <img [src]="game.background_image">
+      <div class="name">{{game.name}}</div>
+    </ion-card>
+  </div>
 
-  <ion-item (press)="presentPopover($event, game)" (click)="goToDetails(game)" class="item-text-wrap" mode="ios" detail="true" *ngFor="let game of currentGames">
-    <ion-label class="name">{{game.name}} 
-      <ion-label class="genre">
-        <ion-text color="medium" *ngFor="let platform of game.platforms">{{platform.platform.name}}, </ion-text>
-      </ion-label>
-    </ion-label>
-  </ion-item>
 
   <div class="skeletonDiv" *ngIf="skeleton">
-    <div *ngFor="let item of skeletonItems">
-      <ion-skeleton-text class="skeletonTitle" animated style="width: 85%"></ion-skeleton-text>
-      <ion-skeleton-text class="skeletonGenres" animated style="width: 60%"></ion-skeleton-text> 
-    </div>
+      <ion-card mode="ios" *ngFor="let item of skeletonItems">
+        <ion-skeleton-text class="skeletonTitle" animated></ion-skeleton-text>
+      </ion-card>
   </div>
 </ion-content>
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Maven+Pro:700&display=swap');
+</style>

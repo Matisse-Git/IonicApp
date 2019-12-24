@@ -45,6 +45,7 @@ export class Tab2Page {
   }
 
   showSkeleton(query: String) {
+    console.log("key pressed")
     if (query != '') {
       for (let index = 0; index < 15; index++) {
         if (this.skeletonItems.length < 15) {
