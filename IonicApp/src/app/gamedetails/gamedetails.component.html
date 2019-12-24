@@ -3,37 +3,31 @@
     <ion-buttons slot="start">
       <ion-back-button color="success"></ion-back-button>
     </ion-buttons>
-    <ion-title slot="start">
+    <ion-title>
       {{currentGame.name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-
-  <ion-img class="cover" [src]="currentGame.background_image"></ion-img>
-
   <div class="segmenter">
-    <ion-segment [(ngModel)]="segment" (ionChange)="segmentChanged($event)" value="'info'" padding color="success"
-      mode="ios">
+    <ion-segment [(ngModel)]="segment" value="info" padding color="success" mode="ios">
       <ion-segment-button value="info" mode="ios">
-        <ion-label>Info</ion-label>
+        Info
       </ion-segment-button>
       <ion-segment-button value="description" mode="ios">
-        <ion-label>Description</ion-label>
+        Description
       </ion-segment-button>
     </ion-segment>
   </div>
 
 
-  <div [ngSwitch]="segment" padding>
-    <div *ngSwitchCase="'info'">
-      <div class="genres">
-        <h5>Genres:</h5>
-        <p *ngFor="let genre of currentGame.genres">{{genre.name}}, </p>
-      </div>
-    </div>
-    <div class="description" *ngSwitchCase="'description'" padding>
+  <div [ngSwitch]="segment">
+    <ion-card *ngSwitchCase="'info'">
+      <ion-img class="cover" [src]="currentGame.background_image"></ion-img>
+    </ion-card>
+
+    <ion-card *ngSwitchCase="'description'">
       <div [innerHTML]="currentGame.description"></div>
-    </div>
+    </ion-card>
   </div>
 </ion-content>
