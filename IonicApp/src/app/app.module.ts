@@ -14,10 +14,12 @@ import { IonicGestureConfig } from './IonicGestureConfig';
 import { LongPressModule } from 'ionic-long-press';
 import { SearchpressComponent } from './searchpress/searchpress.component';
 import { FormsModule } from '@angular/forms';
+import { Tab2PageModule } from './tab2/tab2.module';
+import { Tab2Page } from './tab2/tab2.page';
 
 @NgModule({
-  declarations: [AppComponent, GamedetailsComponent, SearchpressComponent],
-  entryComponents: [SearchpressComponent],
+  declarations: [AppComponent, GamedetailsComponent, SearchpressComponent, Tab2Page],
+  entryComponents: [SearchpressComponent, Tab2Page],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, LongPressModule, IonicModule, FormsModule],
   providers: [
     StatusBar,
