@@ -18,4 +18,9 @@ export class SearchtabPage implements OnInit {
     console.log("routed")
   }
 
+  goToSearchGenre(){
+    this.router.navigate(['searchGenre'])
+    console.log("routed")
+  }
+
 }

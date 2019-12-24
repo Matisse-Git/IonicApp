@@ -10,10 +10,13 @@ export class MessagesService {
   constructor(private toastController: ToastController, private loadingController: LoadingController,
     public popoverController: PopoverController) { }
 
-  async presentToast() {
+  public async presentToast(toastMessage: string, toastDuration: number) {
     const toast = await this.toastController.create({
-      message: 'Game Found!',
-      duration: 2000
+      message: toastMessage,
+      duration: toastDuration,
+      mode: "ios",
+      keyboardClose: true,
+      showCloseButton: true
     });
     toast.present();
   }

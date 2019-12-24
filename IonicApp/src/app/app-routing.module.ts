@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { Tab2Page } from './tab2/tab2.page';
 import { GamedetailsComponent } from './gamedetails/gamedetails.component';
 import { Tab2PageModule } from './tab2/tab2.module';
+import { SearchgenresComponent } from './searchgenres/searchgenres.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
   }
   ,{ path: 'details', component: GamedetailsComponent },
   { path: 'searchName', component: Tab2Page},
+  { path: 'searchGenre', component: SearchgenresComponent},
   {
     path: 'searchtab',
     loadChildren: () => import('./searchtab/searchtab.module').then( m => m.SearchtabPageModule)

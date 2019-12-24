@@ -5,7 +5,17 @@
 </ion-header>
 
 <ion-content>
-<ion-item (click)="goToSearchName()">
-  <ion-label>Search by name</ion-label>
-  </ion-item>
+  <div class="searchOptions">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Search Options</ion-label>
+      </ion-item-divider>
+      <ion-item (click)="goToSearchName()" lines="none" detail="true">
+        <ion-label>Search Name</ion-label>
+      </ion-item>
+      <ion-item (click)="goToSearchGenre()" lines="none" detail="true">
+        <ion-label>Search Genre</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </div>
 </ion-content>

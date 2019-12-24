@@ -21,7 +21,7 @@ export class Tab2Page {
 
   constructor(private service: APIService, public toastController: ToastController,
     public loadingController: LoadingController, private router: Router, private detail: GamedetailsService
-    ,public popoverController: PopoverController) { }
+    ,public popoverController: PopoverController, private messages: MessagesService) { }
 
   ngOnInit() { }
 
@@ -32,8 +32,12 @@ export class Tab2Page {
         games.results.forEach(element => {
           this.currentGames.push(element);
         });
+        if (this.currentGames.length == 0 && query != ''){
+          this.messages.presentToast('No Games Found...', 2000)
+        }
       })
     }
+
   }
 
   async presentPopover(ev: any, gameIn: IGame) {
