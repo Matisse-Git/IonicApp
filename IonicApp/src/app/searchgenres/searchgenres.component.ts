@@ -80,7 +80,7 @@ export class SearchgenresComponent implements OnInit {
   }
 
   scrollToTop(){
-    document.querySelector('ion-content').scrollToTop(500);
+    document.querySelector('ion-content').scrollToTop(2500);
   }
 
   initializeOptions(){

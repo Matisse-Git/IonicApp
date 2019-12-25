@@ -68,6 +68,13 @@ ion-card{
 }
 
 ion-button{
-    width: 10em;
-    --background: #464545 !important;
+    width: 3em;
+    border-radius: 100%;
+}
+ion-fab-button{
+    margin-left: 22.5em;
+    bottom: 1em;
+    position: absolute;
+    z-index: 98;
+    --box-shadow: none;
 }
