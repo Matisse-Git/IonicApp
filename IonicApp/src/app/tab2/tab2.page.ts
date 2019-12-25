@@ -32,6 +32,24 @@ export class Tab2Page {
     if (query != '') {
       this.service.searchGames(query).subscribe(games => {
         games.results.forEach(element => {
+          element.platforms.forEach(platforms => {
+            if (platforms.platform.name == "PC"){
+              console.log(element.name + " --> PC")
+              element.windows = true;
+            }
+            if (platforms.platform.name == "PlayStation 4"){
+              console.log(element.name + " --> PS4")
+              element.playstation = true;
+            }
+            if (platforms.platform.name == "Xbox One"){
+              console.log(element.name + " --> XBOX")
+              element.xbox = true;
+            }
+            if (platforms.platform.name == "Nintendo Switch"){
+              console.log(element.name + " --> SWITCH")
+              element.switch = true;
+            }
+          });
           this.currentGames.push(element);
         });
         this.skeleton = false;

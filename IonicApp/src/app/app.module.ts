@@ -52,6 +52,10 @@ export interface IGame{
   background_image: String; 
   platforms: IPlatforms[];
   score: number;
+  playstation: boolean;
+  xbox: boolean;
+  switch: boolean;
+  windows: boolean;
 }
 
 export interface IGenres{

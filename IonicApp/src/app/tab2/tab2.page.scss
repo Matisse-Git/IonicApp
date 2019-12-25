@@ -10,9 +10,38 @@
     background-color: rgb(51, 51, 51);
 }
 
+.platformIco{
+    height: 1.2em;
+    width: 1.2em;
+    position: absolute;
+    z-index: 99;
+    bottom: 10px;
+}
+
+#playstationIco{
+    left: 0.5em;
+    bottom: 50px;
+}
+
+#switchIco{
+    left: 0.5em;
+    bottom:6px;
+}
+
+#pcIco{
+    left: 0.5em;
+    bottom: 72px;
+}
+
+#xboxIco{
+    left: 0.5em;
+    bottom: 27px;
+}
+
 .name{
-    width: 100%;
+    width: 75%;
     height: 60px;
+    margin-left: 2.7em;
     position: absolute;
     z-index: 99;
     bottom: -5px;
@@ -27,7 +56,7 @@
     font-size: 8pt;
 }
 
-img{
+.backgroundIMG{
     width:100%;
     height:7em;
     object-fit: cover;
