@@ -23,4 +23,12 @@ export class SearchtabPage implements OnInit {
     console.log("routed")
   }
 
+  goToYearlyTrending(){
+    this.router.navigate(['yearlyTrending'])
+    console.log("routed")
+  }
+
+  routeComponent(componentName: string){
+    this.router.navigate([componentName])
+  }
 }
