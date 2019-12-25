@@ -18,9 +18,13 @@ export class APIService {
     return this.client.get<IResults>("https://api.rawg.io/api/games");
   }
 
-  searchGamesGenrePage(genre: String, page: number){
+  getYearlyPopularGames(year: String, page: number){
+    return this.client.get<IResults>(`https://api.rawg.io/api/games?dates=${year}-01-01,${year}-12-31&page=${page}&ordering=-added`)
+  }
+
+  searchGamesGenrePage(genre: String, page: number, ordering: String){
     console.log(`https://api.rawg.io/api/games?genres=${genre}&page=${page}`)
-    return this.client.get<IResults>(`https://api.rawg.io/api/games?genres=${genre}&page=${page}`);
+    return this.client.get<IResults>(`https://api.rawg.io/api/games?genres=${genre}&page=${page}&ordering=${ordering}`);
   }
 
   getGameDetailed(gameID: number){

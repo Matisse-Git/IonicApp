@@ -13,9 +13,17 @@
   <ion-item>
     <ion-label>Select Genre</ion-label>
     <ion-select #genreSelect (ionChange)="resetPages()" (ionChange)="showSkeleton()"
-      (ionChange)="getGames(genreSelect.value)" scrollable mode="ios" [interfaceOptions]="genreOptions"
-      interface="alert" placeholder="Select One">
+      (ionChange)="getGames(genreSelect.value, currentSorting)" scrollable mode="ios" [interfaceOptions]="genreOptions"
+      interface="alert" placeholder="Select Genre">
       <ion-select-option *ngFor="let genre of genreOptions">{{genre}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Sort</ion-label>
+    <ion-select value="Most Popular" #sortSelect (ionChange)="resetPages()" (ionChange)="showSkeleton()"
+      (ionChange)="getGames(genreSelect.value, sortSelect.value)" scrollable mode="ios" [interfaceOptions]="genreOptions"
+      interface="alert" placeholder="Sorting Method">
+      <ion-select-option *ngFor="let sorting of sortingOptions">{{sorting}}</ion-select-option>
     </ion-select>
   </ion-item>
 
@@ -30,6 +38,7 @@
       <img class="platformIco" id="switchIco" *ngIf="game.switch" src='https://i.imgur.com/3kqYqhm.png'
         alt="SwitchLogo">
       <div class="name">{{game.name}}</div>
+      <div class="rating">{{game.rating}}/5</div>
     </ion-card>
   </div>
 
@@ -48,7 +57,7 @@
 
 </ion-content>
 
-<ion-fab-button *ngIf="currentGames.length > 20" (click)="scrollToTop()" color="primary"><ion-icon name="arrow-dropup"></ion-icon></ion-fab-button>
+<ion-fab-button *ngIf="currentGames.length > 0" (click)="scrollToTop()" color="primary"><ion-icon name="arrow-dropup"></ion-icon></ion-fab-button>
 
 <style>
   @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');

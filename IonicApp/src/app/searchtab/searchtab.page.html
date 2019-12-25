@@ -11,10 +11,24 @@
         <ion-label>Search Options</ion-label>
       </ion-item-divider>
       <ion-item (click)="goToSearchName()" lines="none" detail="true">
+        <ion-icon slot="start" name="search" color="white"></ion-icon>
         <ion-label>Search Name</ion-label>
       </ion-item>
       <ion-item (click)="goToSearchGenre()" lines="none" detail="true">
+        <ion-icon slot="start" name="tennisball" color="white"></ion-icon>
         <ion-label>Search Genre</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </div>
+
+  <div class="searchOptions">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>Trending Games</ion-label>
+      </ion-item-divider>
+      <ion-item (click)="goToSearchName()" lines="none" detail="true">
+        <ion-icon slot="start" name="flame" color="white"></ion-icon>
+        <ion-label>Yearly Popular</ion-label>
       </ion-item>
     </ion-item-group>
   </div>

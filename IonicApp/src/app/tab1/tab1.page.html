@@ -1,21 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Gaming
+      List
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="currentGames">
-    <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Games</ion-label>
-      </ion-list-header>
-      <ion-item *ngFor="let game of currentGames">
-        <ion-label>{{game.name}}</ion-label>
-        <ion-label>
-          <ion-img slot="end" [src]="game.background_image"></ion-img>
-        </ion-label>
-      </ion-item>
-    </ion-list>
-</ion-content>
+

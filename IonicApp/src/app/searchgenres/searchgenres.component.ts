@@ -14,9 +14,11 @@ export class SearchgenresComponent implements OnInit {
   constructor(private service: APIService, private detail: GamedetailsService, private router: Router) { }
 
   genreOptions: String[] = [];
+  sortingOptions: String[] = [];
   currentGames: IGame[] = [];
   currentPage: number = 1;
   currentGenre: String;
+  currentSorting: String = "-rating";
   skeleton: boolean;
   skeletonItems: String[] = [];
 
@@ -28,16 +30,48 @@ export class SearchgenresComponent implements OnInit {
     this.currentPage = 1;
   }
 
-   getGames(genreIn: String){
+   getGames(genreIn: String, sortingIn: String){
     this.skeleton = true;
     console.log(this.currentPage)
     if (genreIn != '' && genreIn != null){
     this.currentGenre = genreIn;
-    this.service.searchGamesGenrePage(this.currentGenre, this.currentPage).subscribe(games => {
+    this.currentSorting = this.checkSorting(sortingIn);
+    this.service.searchGamesGenrePage(this.currentGenre, this.currentPage, this.currentSorting).subscribe(games => {
       this.currentGames = this.checkPlatforms(games)
       this.skeleton = false;
     })
   }
+  }
+
+  checkSorting(sortingIn: String)
+  {
+    var newSorting: String;
+    switch (sortingIn) {
+      case "Most Popular":
+        newSorting = "-added"
+        break;
+      case "Name (A-Z)":
+        newSorting = "name"
+        break;
+      case "Name (Z-A)":
+        newSorting = "-name"
+        break;
+      case "Release Date (Recent-Old)":
+        newSorting = "released";
+        break;
+      case "Release Date (Old-Recent)":
+        newSorting = "-released"
+        break;
+      case "Rating (Good-Bad)":
+        newSorting = "-rating"
+        break;
+      case "Rating (Bad-Good)":
+        newSorting = "rating"
+        break;
+      default:
+        break;
+    }
+    return newSorting;
   }
 
   showSkeleton() {
@@ -53,7 +87,7 @@ export class SearchgenresComponent implements OnInit {
   previousPage(){
     if(this.currentPage > 1){
       this.currentPage--;
-      setTimeout(() => this.getGames(this.currentGenre), 500);
+      setTimeout(() => this.getGames(this.currentGenre, this.currentSorting), 500);
     }
   }
 
@@ -62,7 +96,7 @@ export class SearchgenresComponent implements OnInit {
     this.skeleton = true;
     setTimeout(() => {
       console.log('Done');
-      this.service.searchGamesGenrePage(this.currentGenre, this.currentPage).subscribe(games => {
+      this.service.searchGamesGenrePage(this.currentGenre, this.currentPage,this.currentSorting).subscribe(games => {
         var newGames: IGame[] = this.checkPlatforms(games);
         newGames.forEach(element => {
           this.currentGames.push(element);
@@ -76,7 +110,7 @@ export class SearchgenresComponent implements OnInit {
 
   nextPage(){
     this.currentPage++;
-    setTimeout(() => this.getGames(this.currentGenre), 500);
+    setTimeout(() => this.getGames(this.currentGenre, this.currentSorting), 500);
   }
 
   scrollToTop(){
@@ -103,6 +137,14 @@ export class SearchgenresComponent implements OnInit {
     this.genreOptions.push("board-games")
     this.genreOptions.push("educational")
     this.genreOptions.push("card")
+
+    this.sortingOptions.push("Most Popular")
+    this.sortingOptions.push("Name (A-Z)")
+    this.sortingOptions.push("Name (Z-A)")
+    this.sortingOptions.push("Release Date (Recent - Old)")
+    this.sortingOptions.push("Release Date (Old - Recent)")
+    this.sortingOptions.push("Rating (Good-Bad)")
+    this.sortingOptions.push("Rating (Bad-Good)")
   }
 
   goToDetails(gameIn: IGame) {
