@@ -18,6 +18,11 @@ export class APIService {
     return this.client.get<IResults>("https://api.rawg.io/api/games");
   }
 
+  searchGamesGenrePage(genre: String, page: number){
+    console.log(`https://api.rawg.io/api/games?genres=${genre}&page=${page}`)
+    return this.client.get<IResults>(`https://api.rawg.io/api/games?genres=${genre}&page=${page}`);
+  }
+
   getGameDetailed(gameID: number){
     return this.client.get<IGame>("https://api.rawg.io/api/games/" + gameID);
   }

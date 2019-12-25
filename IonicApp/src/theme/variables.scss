@@ -95,3 +95,13 @@ ion-toast{
   --color: #ffffff;
   --width: 70%;
 }
+ion-action-sheet{ 
+	--background: #202020 !important; 
+  --background-activated: #272727 !important;
+  --background-selected: #141414 !important;
+}
+
+ion-alert{
+  --background: #202020 !important;
+  --min-heigt: 70em !important;
+}

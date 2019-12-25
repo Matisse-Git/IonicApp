@@ -1,13 +1,57 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-back-button color="success"></ion-back-button>
-      </ion-buttons>  
+    <ion-buttons slot="start">
+      <ion-back-button color="success"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Search Genre
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [scrollEvents]="true">
+  <ion-item>
+    <ion-label>Select Genre</ion-label>
+    <ion-select #genreSelect (ionChange)="resetPages()" (ionChange)="showSkeleton()"
+      (ionChange)="getGames(genreSelect.value)" scrollable mode="ios" [interfaceOptions]="genreOptions"
+      interface="alert" placeholder="Select One">
+      <ion-select-option *ngFor="let genre of genreOptions">{{genre}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+<ion-infinite-scroll threshold="800px" (ionInfinite)="pushGames($event)">
+  <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more data...">
+  <div *ngIf="!skeleton">
+    <ion-card (click)="goToDetails(game)" class="item-text-wrap" mode="ios" detail="true"
+      *ngFor="let game of currentGames">
+      <img class="backgroundIMG" [src]="game.background_image" alt="Image Not Found :(">
+      <img class="platformIco" id="pcIco" *ngIf="game.windows" src='https://i.imgur.com/vt5Pfnn.png' alt="PCLogo">
+      <img class="platformIco" id="playstationIco" *ngIf="game.playstation" src='https://i.imgur.com/cjnh0de.png'
+        alt="PS4Logo">
+      <img class="platformIco" id="xboxIco" *ngIf="game.xbox" src='https://i.imgur.com/nyiRmhl.png' alt="XboxLogo">
+      <img class="platformIco" id="switchIco" *ngIf="game.switch" src='https://i.imgur.com/3kqYqhm.png'
+        alt="SwitchLogo">
+      <div class="name">{{game.name}}</div>
+    </ion-card>
+    <div class="pagesButtons" *ngIf="currentGames.length != 0">
+      <ion-button mode="ios" (click)="scrollToTop()" (click)="showSkeleton()" (click)="previousPage()">Previous Page..
+      </ion-button>
+      <ion-button mode="ios" (click)="scrollToTop()" (click)="showSkeleton()" (click)="nextPage()">Next Page..
+      </ion-button>
+    </div>
+  </div>
+</ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+
+  <div class="skeletonDiv" *ngIf="skeleton">
+    <ion-card mode="ios" *ngFor="let item of skeletonItems">
+      <ion-skeleton-text class="skeletonTitle" animated></ion-skeleton-text>
+    </ion-card>
+  </div>
 </ion-content>
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Maven+Pro:700&display=swap');
+</style>

@@ -12,8 +12,8 @@
 <ion-content>
   <ion-searchbar debounce="400" (ionInput)="showSkeleton(gameID.value)" (ionChange)="getGameById(gameID.value)"
     mode="ios" #gameID placeholder="Search Game"></ion-searchbar>
-  <div *ngIf="!skeleton">
-    <ion-card (press)="presentPopover($event, game)" (click)="goToDetails(game)" class="item-text-wrap" mode="ios"
+  <div>
+    <ion-card (click)="goToDetails(game)" class="item-text-wrap" mode="ios"
       detail="true" *ngFor="let game of currentGames">
       <img class="backgroundIMG" [src]="game.background_image" alt="Image Not Found :(">
       <img class="platformIco" id="pcIco" *ngIf="game.windows" src='https://i.imgur.com/vt5Pfnn.png' alt="PCLogo">
