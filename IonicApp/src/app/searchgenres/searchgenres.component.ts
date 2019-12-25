@@ -74,6 +74,7 @@ export class SearchgenresComponent implements OnInit {
     return newSorting;
   }
 
+
   showSkeleton() {
       for (let index = 0; index < 15; index++) {
         if (this.skeletonItems.length < 15) {
@@ -105,7 +106,7 @@ export class SearchgenresComponent implements OnInit {
       })
       event.target.complete();
 
-      }, 500);
+      }, 1500);
   }
 
   nextPage(){

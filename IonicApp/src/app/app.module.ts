@@ -17,11 +17,14 @@ import { FormsModule } from '@angular/forms';
 import { Tab2PageModule } from './tab2/tab2.module';
 import { Tab2Page } from './tab2/tab2.page';
 import { SearchgenresComponent } from './searchgenres/searchgenres.component';
+import { YearlytrendingComponent } from './yearlytrending/yearlytrending.component';
 
 @NgModule({
-  declarations: [AppComponent, GamedetailsComponent, SearchpressComponent, Tab2Page, SearchgenresComponent],
-  entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, LongPressModule, IonicModule, FormsModule],
+  declarations: [AppComponent, GamedetailsComponent, SearchpressComponent, 
+    Tab2Page, SearchgenresComponent, YearlytrendingComponent],
+  entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, 
+    LongPressModule, IonicModule, FormsModule],
   providers: [
     StatusBar,
     SplashScreen,

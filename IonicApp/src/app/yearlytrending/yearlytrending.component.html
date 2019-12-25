@@ -4,28 +4,22 @@
       <ion-back-button color="success"></ion-back-button>
     </ion-buttons>
     <ion-title>
-      Search Genre
+      Yearly Trending Games
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
   <ion-item>
-    <ion-label>Select Genre</ion-label>
-    <ion-select #genreSelect (ionChange)="resetPages()" (ionChange)="showSkeleton()"
-      (ionChange)="getGames(genreSelect.value, currentSorting)" scrollable mode="ios" [interfaceOptions]="genreOptions"
-      interface="alert" placeholder="Select Genre">
-      <ion-select-option *ngFor="let genre of genreOptions">{{genre}}</ion-select-option>
+    <ion-label>Year</ion-label>
+    <ion-select #yearSelect (ionChange)="resetPages()" (ionChange)="showSkeleton()"
+      (ionChange)="getGames(yearSelect.value)" scrollable mode="ios"
+      interface="alert" placeholder="Select Year">
+      <ion-select-option *ngFor="let year of yearOptions">{{year}}</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-item>
-    <ion-label>Sort</ion-label>
-    <ion-select value="Most Popular" #sortSelect (ionChange)="resetPages()" (ionChange)="showSkeleton()"
-      (ionChange)="getGames(genreSelect.value, sortSelect.value)" scrollable mode="ios" [interfaceOptions]="genreOptions"
-      interface="alert" placeholder="Sorting Method">
-      <ion-select-option *ngFor="let sorting of sortingOptions">{{sorting}}</ion-select-option>
-    </ion-select>
-  </ion-item>
+
 
   <div>
     <ion-card (click)="goToDetails(game)" class="item-text-wrap" mode="ios" detail="true"
@@ -50,19 +44,12 @@
     </ion-card>
   </div>
 
-  <ion-infinite-scroll threshold="10%" (ionInfinite)="pushGames($event)">
-    <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-
+<ion-infinite-scroll threshold="10%" (ionInfinite)="pushGames($event)">
+  <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more data...">
+  </ion-infinite-scroll-content>
+</ion-infinite-scroll>
 </ion-content>
 
 <ion-fab-button *ngIf="currentGames.length > 0" (click)="scrollToTop()" color="primary">
   <ion-icon name="arrow-dropup"></ion-icon>
 </ion-fab-button>
-
-<style>
-  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
-  @import url('https://fonts.googleapis.com/css?family=Maven+Pro:700&display=swap');
-</style>
