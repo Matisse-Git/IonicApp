@@ -62,13 +62,15 @@ export class SearchgenresComponent implements OnInit {
     this.skeleton = true;
     setTimeout(() => {
       console.log('Done');
-      this.skeleton = false;
-      event.target.complete();
       this.service.searchGamesGenrePage(this.currentGenre, this.currentPage).subscribe(games => {
-        games.results.forEach(element => {
+        var newGames: IGame[] = this.checkPlatforms(games);
+        newGames.forEach(element => {
           this.currentGames.push(element);
+          this.skeleton = false;
         });
       })
+      event.target.complete();
+
       }, 500);
   }
 

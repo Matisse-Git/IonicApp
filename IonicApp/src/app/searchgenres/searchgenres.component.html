@@ -9,7 +9,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [scrollEvents]="true">
+<ion-content>
   <ion-item>
     <ion-label>Select Genre</ion-label>
     <ion-select #genreSelect (ionChange)="resetPages()" (ionChange)="showSkeleton()"
@@ -18,9 +18,8 @@
       <ion-select-option *ngFor="let genre of genreOptions">{{genre}}</ion-select-option>
     </ion-select>
   </ion-item>
-<ion-infinite-scroll threshold="800px" (ionInfinite)="pushGames($event)">
-  <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more data...">
-  <div *ngIf="!skeleton">
+
+  <div>
     <ion-card (click)="goToDetails(game)" class="item-text-wrap" mode="ios" detail="true"
       *ngFor="let game of currentGames">
       <img class="backgroundIMG" [src]="game.background_image" alt="Image Not Found :(">
@@ -32,15 +31,8 @@
         alt="SwitchLogo">
       <div class="name">{{game.name}}</div>
     </ion-card>
-    <div class="pagesButtons" *ngIf="currentGames.length != 0">
-      <ion-button mode="ios" (click)="scrollToTop()" (click)="showSkeleton()" (click)="previousPage()">Previous Page..
-      </ion-button>
-      <ion-button mode="ios" (click)="scrollToTop()" (click)="showSkeleton()" (click)="nextPage()">Next Page..
-      </ion-button>
-    </div>
   </div>
-</ion-infinite-scroll-content>
-</ion-infinite-scroll>
+
 
 
   <div class="skeletonDiv" *ngIf="skeleton">
@@ -48,6 +40,12 @@
       <ion-skeleton-text class="skeletonTitle" animated></ion-skeleton-text>
     </ion-card>
   </div>
+
+  <ion-infinite-scroll threshold="10%" (ionInfinite)="pushGames($event)">
+    <ion-infinite-scroll-content loadingSpinner="dots" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 </ion-content>
 
 <style>
