@@ -5,7 +5,6 @@ import { Router } from '@angular/router'
 import { IGame } from '../app.module';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
-
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -20,18 +19,7 @@ export class Tab1Page {
   currentGames: IGame[] = [];
 
   ngOnInit(){
-    this.service.getGames().subscribe(game =>{
-      game.results.forEach(element => {
-        this.currentGames.push(element);
-      });
-    })
+
   }
 
-  getGames(){
-    this.service.getGames().subscribe(game =>{
-      game.results.forEach(element => {
-        this.currentGames.push(element);
-      });
-    })
-  }
 }
