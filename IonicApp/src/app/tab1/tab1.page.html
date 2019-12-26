@@ -7,3 +7,14 @@
 </ion-header>
 
 
+<ion-content>
+  <div *ngIf="currentProfile">
+  <ion-list-header mode="ios">{{currentProfile.username}}</ion-list-header>
+  <ion-avatar class="ion-margin-start">
+    <img [src]="currentProfile.avatar">
+  </ion-avatar>
+</div>
+  <ion-card *ngFor="let playing of currentPlaying">
+      {{playing.name}}
+  </ion-card>
+</ion-content>

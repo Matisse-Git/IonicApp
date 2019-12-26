@@ -75,6 +75,26 @@ export interface IPlatform{
   name: String;
 }
 
+export interface IUser{
+  username: String;
+  slug: String;
+  full_name: String;
+  bio: String;
+  avatar: String;
+  background: String;
+  counters: ICounter;
+  share: String;
+}
+
+export interface ICounter{
+  games: number;
+  collections: number;
+  reviews: number;
+  comments: number;
+  followers: number;
+  following: number;
+}
+
 export const AppConfig: IAppConfig = {    
   gamesEndpoint: "http://localhost:8100/games/"    
 };
