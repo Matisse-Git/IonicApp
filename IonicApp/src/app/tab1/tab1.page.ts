@@ -4,9 +4,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router'
 import { IGame, IUser } from '../app.module';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { ProfileService } from '../profile.service';
 var Rawger = require('rawger');
-
 declare var require: any
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -15,7 +16,7 @@ declare var require: any
 export class Tab1Page {
 
   constructor(private client: HttpClient, private service: APIService, private router: Router,
-    private statusBar: StatusBar) {
+    private statusBar: StatusBar, private profile: ProfileService) {
     this.statusBar.hide();
   }
 
@@ -24,66 +25,23 @@ export class Tab1Page {
   currentBeaten: IGame[] = [];
   currentDropped: IGame[] = [];
   currentYet: IGame[] = [];
-  currentOwned: IGame[] = [];
   currentCollections: IGame[] = [];
   currentProfile: IUser;
 
-
   async ngOnInit(){
-    var rawger = await Rawger();
+    var rawger = await Rawger({
+      email: 'matttske@gmail.com',
+      password: 'Simbaenkiara<3'
+    });
     var { users } = rawger;
+
     this.currentProfile = (await users('matttske').profile()).get();
-    var playing = (await users('Matttske').games('playing')).raw()
-    var toplay = (await users('Matttske').games('toplay')).raw()
-    var beaten  = (await users('Matttske').games('beaten ')).raw()
-    var dropped = (await users('Matttske').games('dropped')).raw()
-    var yet = (await users('Matttske').games('yet ')).raw()
-    var owned  = (await users('Matttske').games('owned ')).raw()
-    var collections = (await users('Matttske').collections()).raw()
-
-    playing.forEach(element => {
-      this.currentPlaying.push(element);
-    });
-
-    toplay.forEach(element => {
-      this.currentToPlay.push(element)
-    });
-
-    beaten.forEach(element => {
-      this.currentBeaten.push(element)
-    });
-
-    dropped.forEach(element => {
-      this.currentDropped.push(element)
-    });
-
-    yet.forEach(element => {
-      this.currentYet.push(element)
-    });
-
-    owned.forEach(element => {
-      this.currentOwned.push(element)
-    });
-
-    collections.forEach(element => {
-      this.currentCollections.push(element)
-    });
-
-
-    /*console.log("playing ->")
-    console.log(playing);
-    console.log("toplay ->")
-    console.log(toplay);
-    console.log("beaten ->")
-    console.log(beaten);
-    console.log("dropped ->")
-    console.log(dropped);
-    console.log("yet ->")
-    console.log(yet);
-    console.log("owned ->")
-    console.log(owned);
-    console.log("collections ->")*/
-    console.log(this.currentProfile)
+    this.currentPlaying = (await users('Matttske').games('playing')).raw()
+    this.currentToPlay = (await users('Matttske').games('toplay')).raw()
+    this.currentBeaten  = (await users('Matttske').games('beaten ')).raw()
+    this.currentDropped = (await users('Matttske').games('dropped')).raw()
+    this.currentYet = (await users('Matttske').games('yet ')).raw()
+    this.currentCollections = (await users('Matttske').collections()).raw()
   }
 
 }
