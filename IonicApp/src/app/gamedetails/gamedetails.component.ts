@@ -94,9 +94,12 @@ export class GamedetailsComponent implements OnInit {
   async updateGameStatus(gameID: string, gameStatus: string){
     if(gameStatus == "toplay"){
       this.wishlistButtonColor = 'success'
+      await this.profile.updateGameStatus(gameID, 'toplay')
     }
-    await this.profile.updateGameStatus(gameID, gameStatus)
-    console.log(gameID + "updated to" + status)
+    else {
+      await this.profile.updateGameStatus(gameID, gameStatus)
+    }
+    console.log(gameID.toString() + "updated to" + gameStatus.toString())
   }
 
   presentToast(message: string, duration: number){

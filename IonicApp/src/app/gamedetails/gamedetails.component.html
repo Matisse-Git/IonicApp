@@ -7,8 +7,8 @@
     <ion-title>
       {{currentGame.name}}
     </ion-title>
-    <ion-button (click)="updateGameStatus(currentGame.id, 'toplay')"
-      (click)="presentToast('Added to your wishlist!', 1500)" size="large" slot="end" class="wishlistButton">
+    <ion-button (click)="presentToast('Added to your wishlist!', 1500)" 
+    (click)="updateGameStatus(currentGame.id, 'toplay')" size="large" slot="end" class="wishlistButton">
       <ion-icon name="gift" [color]="wishlistButtonColor"></ion-icon>
     </ion-button>
   </ion-toolbar>
