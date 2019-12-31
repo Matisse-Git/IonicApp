@@ -17,6 +17,8 @@ export class GamedetailsComponent implements OnInit {
   wishlistButtonColor: string = 'white';
   showBackdrop: boolean;
   currentSegment: string = 'info';
+  info: boolean = true;
+  description: boolean = false;
 
   constructor(private detail: GamedetailsService, private profile: ProfileService, private messages: MessagesService) { }
 
@@ -65,8 +67,17 @@ export class GamedetailsComponent implements OnInit {
     return gameIn;
   }
 
-  segmentChanged(ev: any) { 
+  segmentChanged(ev: any, segmentValue: String) { 
+    if (segmentValue == "info"){
+      this.info = true;
+      this.description = false;
+    }
+    if (segmentValue == "description"){
+      this.info = false;
+      this.description = true;
+    }
     console.log('Segment changed', ev);
+    console.log(segmentValue)
   }
 
   initializeOptions(){
@@ -74,6 +85,10 @@ export class GamedetailsComponent implements OnInit {
     this.statusOptions.push("dropped")
     this.statusOptions.push("beaten")
     this.statusOptions.push("yet")
+  }
+
+  changeSegment(segmentValue: String){
+
   }
 
   async updateGameStatus(gameID: string, gameStatus: string){

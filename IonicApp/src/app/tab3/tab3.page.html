@@ -1,8 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Settings
+      My Releases
     </ion-title>
+    <ion-segment scrollable *ngIf="months" value="JAN">
+      <ion-segment-button *ngFor="let month of months" [value]="month">
+        <ion-label>{{month}}</ion-label>
+      </ion-segment-button>
+    </ion-segment>  
   </ion-toolbar>
 </ion-header>
 

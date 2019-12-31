@@ -22,7 +22,6 @@ ion-button:hover{
     width: 73%;
     display: inline-block;
     --background: transparent !important;
-    --border-color: #10dc60 !important; 
     --box-shadow: none !important;
     --color: #ffffff !important;
 }
@@ -69,9 +68,17 @@ ion-img{
 }
 
 ion-segment-button{
-    width: 10em;
-    height: 3em;
-    font-size: 12pt;
+    width: 7em;
+    height: 2em;
+    font-size: 10pt;
+    --border-radius: 2em
+}
+
+.footerToolbar{
+    --background: #1d1d1d !important;
+    --border-color: #10dc60 !important;
+    --border-style: none !important;
+    --border-width: 3em !important;
 }
 
 .segmenter{

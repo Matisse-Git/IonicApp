@@ -65,6 +65,18 @@ export interface IGame{
   dropped: boolean;
   completed: boolean;
   yet: boolean;
+  JAN: boolean;
+  FEB: boolean;
+  MAR: boolean;
+  APR: boolean;
+  MAY: boolean;
+  JUNE: boolean;
+  JULY: boolean;
+  AUG: boolean;
+  SEP: boolean;
+  OKT: boolean;
+  NOV: boolean;
+  DEC: boolean;
 }
 
 export interface IGenres{

@@ -7,8 +7,8 @@
     <ion-title>
       {{currentGame.name}}
     </ion-title>
-    <ion-button (click)="updateGameStatus(currentGame.id, 'toplay')" (click)="presentToast('Added to your wishlist!', 1500)" 
-      size="large" slot="end" class="wishlistButton">
+    <ion-button (click)="updateGameStatus(currentGame.id, 'toplay')"
+      (click)="presentToast('Added to your wishlist!', 1500)" size="large" slot="end" class="wishlistButton">
       <ion-icon name="gift" [color]="wishlistButtonColor"></ion-icon>
     </ion-button>
   </ion-toolbar>
@@ -19,7 +19,7 @@
     <ion-img class="cover" [src]="currentGame.background_image"></ion-img>
   </ion-card>
   <div class="segmenter">
-    <ion-segment [(ngModel)]="segment" [value]="currentSegment" padding color="success" mode="ios">
+    <ion-segment #segment value="info" (ionChange)="segmentChanged($event, segment.value)" padding color="success" mode="ios">
       <ion-segment-button value="info" mode="ios">
         Info
       </ion-segment-button>
@@ -29,35 +29,36 @@
     </ion-segment>
   </div>
 
-
-  <div [ngSwitch]="segment">
-    <div *ngSwitchCase="'info'">
-    <ion-item-divider>
-      <ion-label slot="start">Platforms</ion-label>
-    </ion-item-divider>
-    <ion-item class="forName" *ngFor="let platforms of currentGame.platforms" lines="none">
-      <ion-label>{{platforms.platform.name}}</ion-label>
-    </ion-item>
-    <ion-item-divider>
-      <ion-label slot="start">Genres</ion-label>
-    </ion-item-divider>
-    <ion-item class="forName" *ngFor="let genre of currentGame.genres" lines="none">
-      <ion-label>{{genre.name}}</ion-label>
-    </ion-item>
-  </div>
-
-    <ion-text *ngSwitchCase="'description'">
+<div>
+    <div *ngIf="info">
+      <ion-item-divider>
+        <ion-label slot="start">Platforms</ion-label>
+      </ion-item-divider>
+      <ion-item class="forName" *ngFor="let platforms of currentGame.platforms" lines="none">
+        <ion-label>{{platforms.platform.name}}</ion-label>
+      </ion-item>
+      <ion-item-divider>
+        <ion-label slot="start">Genres</ion-label>
+      </ion-item-divider>
+      <ion-item class="forName" *ngFor="let genre of currentGame.genres" lines="none">
+        <ion-label>{{genre.name}}</ion-label>
+      </ion-item>
+    </div>
+    <ion-text *ngIf="description">
       <div class="descriptionText" [innerHTML]="currentGame.description"></div>
     </ion-text>
   </div>
+</ion-content>
 
-  <ion-item class="updateItem">
+<ion-footer>
+  <ion-toolbar class="footerToolbar">
+  <ion-item class="updateItem" lines="none">
     <ion-label>Add To</ion-label>
-    <ion-select #statusSelect [placeholder]="currentStatus" scrollable mode="ios" interface="alert">
+    <ion-select #statusSelect [value]="currentStatus" scrollable mode="ios" interface="alert">
       <ion-select-option *ngFor="let status of statusOptions">{{status}}</ion-select-option>
     </ion-select>
   </ion-item>
   <ion-button class="saveButton" (click)="updateGameStatus(currentGame.id, statusSelect.value)"
-  (click)="presentToast('Added to ' + statusSelect.value + '!', 1500)">Save</ion-button>
-
-</ion-content>
+    (click)="presentToast('Added to ' + statusSelect.value + '!', 1500)">Save</ion-button>
+  </ion-toolbar>
+</ion-footer>
