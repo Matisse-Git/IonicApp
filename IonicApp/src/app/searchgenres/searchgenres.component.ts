@@ -40,7 +40,10 @@ export class SearchgenresComponent implements OnInit {
       this.currentGames = this.checkPlatforms(games)
       this.skeleton = false;
     })
+
+    
   }
+  
   }
 
   checkSorting(sortingIn: String)

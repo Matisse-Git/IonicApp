@@ -18,11 +18,12 @@ import { Tab2PageModule } from './tab2/tab2.module';
 import { Tab2Page } from './tab2/tab2.page';
 import { SearchgenresComponent } from './searchgenres/searchgenres.component';
 import { YearlytrendingComponent } from './yearlytrending/yearlytrending.component';
+import { MostanticipatedComponent } from './mostanticipated/mostanticipated.component';
 
 @NgModule({
   declarations: [AppComponent, GamedetailsComponent, SearchpressComponent, 
-    Tab2Page, SearchgenresComponent, YearlytrendingComponent],
-  entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent],
+    Tab2Page, SearchgenresComponent, YearlytrendingComponent,MostanticipatedComponent],
+  entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent, MostanticipatedComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, 
     LongPressModule, IonicModule, FormsModule],
   providers: [
@@ -59,6 +60,11 @@ export interface IGame{
   xbox: boolean;
   switch: boolean;
   windows: boolean;
+  onWishlist: boolean;
+  playing: boolean;
+  dropped: boolean;
+  completed: boolean;
+  yet: boolean;
 }
 
 export interface IGenres{

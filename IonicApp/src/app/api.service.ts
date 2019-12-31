@@ -14,6 +14,10 @@ export class APIService {
   constructor(private client:HttpClient) { }
 
 
+  getMostAnticipatedGames(page: number){
+    return this.client.get<IResults>("https://api.rawg.io/api/games?dates=2020-01-01,2022-10-10&ordering=-added&page=" + page);
+  }
+
   getGames(){
     return this.client.get<IResults>("https://api.rawg.io/api/games");
   }

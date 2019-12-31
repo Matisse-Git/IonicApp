@@ -22,12 +22,11 @@ export class ProfileService {
   constructor() { }
 
   async ngOnInit(){
-    this.rawger = await Rawger({
+    var rawger = await Rawger({
       email: 'matttske@gmail.com',
       password: 'Simbaenkiara<3'
     });
-    var { users } = this.rawger;
-    console.log(this.users)
+    var { users } = rawger;
 
     this.currentProfile = (await users('matttske').profile()).get();
     this.currentPlaying = (await users('Matttske').games('playing')).raw()
@@ -38,7 +37,30 @@ export class ProfileService {
     this.currentCollections = (await users('Matttske').collections()).raw()
   }
 
+  async refreshAll(){
+    var rawger = await Rawger({
+      email: 'matttske@gmail.com',
+      password: 'Simbaenkiara<3'
+    });
+    var { users } = rawger;
+    this.currentProfile = (await users('matttske').profile()).get();
+    this.currentPlaying = (await users('Matttske').games('playing')).raw()
+    this.currentToPlay = (await users('Matttske').games('toplay')).raw()
+    this.currentBeaten  = (await users('Matttske').games('beaten ')).raw()
+    this.currentDropped = (await users('Matttske').games('dropped')).raw()
+    this.currentYet = (await users('Matttske').games('yet ')).raw()
+    this.currentCollections = (await users('Matttske').collections()).raw()
+  }
   
+  async updateGameStatus(gameID: string, status: string){
+    var rawger = await Rawger({
+      email: 'matttske@gmail.com',
+      password: 'Simbaenkiara<3'
+    });
+    var { users } =  rawger
+    await users('matttske').update().game(gameID, { status: status});
+  }
+
   async getProfile(){
     return this.currentProfile;
   }
@@ -65,15 +87,6 @@ export class ProfileService {
 
   getCollections(){
     return this.currentCollections;
-  }
-
-  async refreshAll(){
-    await this.refreshPlaying();
-    await this.refreshToPlay();
-    await this.refreshBeaten();
-    await this.refreshDropped();
-    await this.refreshYet();
-    await this.refreshCollections();
   }
 
   async refreshPlaying(){

@@ -1,36 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { APIService } from '../api.service';
 import { IGame, IResults } from '../app.module';
+import { APIService } from '../api.service';
 import { GamedetailsService } from '../gamedetails.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-yearlytrending',
-  templateUrl: './yearlytrending.component.html',
-  styleUrls: ['./yearlytrending.component.scss'],
+  selector: 'app-mostanticipated',
+  templateUrl: './mostanticipated.component.html',
+  styleUrls: ['./mostanticipated.component.scss'],
 })
-export class YearlytrendingComponent implements OnInit {
+export class MostanticipatedComponent implements OnInit {
 
 
   constructor(private service: APIService, private detail: GamedetailsService, private router: Router) { }
 
   ngOnInit() {
-    this.initializeOptions();
+    this.getGames(this.currentPage)
   }
 
   currentGames: IGame[] = [];
-  currentPage: number = 1;
-  currentYear: number = 2019;
-  yearOptions: String[] = [];
-
+  currentPage : number = 1;
   skeleton: boolean;
   skeletonItems: String[] = [];
 
   getGames(year: number){
     this.skeleton = true;
-    this.currentYear = year;
-    console.log(this.currentPage);
-    this.service.getYearlyPopularGames(this.currentYear.toString(), this.currentPage).subscribe(games =>{
+    this.service.getMostAnticipatedGames(this.currentPage).subscribe(games =>{
       this.currentGames = this.checkPlatforms(games)
       this.skeleton = false;
     })
@@ -53,13 +48,6 @@ export class YearlytrendingComponent implements OnInit {
 
   resetPages(){
     this.currentPage = 1;
-  }
-
-  initializeOptions(){
-    for (let index = 2020; index > 1990; index--) {
-      this.yearOptions.push(index.toString());
-    }
-    console.log(this.yearOptions)
   }
 
   checkPlatforms(games: IResults){
@@ -96,14 +84,12 @@ export class YearlytrendingComponent implements OnInit {
 }
 pushGames(event){
   this.currentPage++;
-  this.skeleton = true;
   setTimeout(() => {
     console.log('Done');
-    this.service.getYearlyPopularGames(this.currentYear.toString(), this.currentPage).subscribe(games => {
+    this.service.getMostAnticipatedGames(this.currentPage).subscribe(games => {
       var newGames: IGame[] = this.checkPlatforms(games);
       newGames.forEach(element => {
         this.currentGames.push(element);
-        this.skeleton = false;
       });
     })
     event.target.complete();

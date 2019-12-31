@@ -5,6 +5,7 @@ import { GamedetailsComponent } from './gamedetails/gamedetails.component';
 import { Tab2PageModule } from './tab2/tab2.module';
 import { SearchgenresComponent } from './searchgenres/searchgenres.component';
 import { YearlytrendingComponent } from './yearlytrending/yearlytrending.component';
+import { MostanticipatedComponent } from './mostanticipated/mostanticipated.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'searchName', component: Tab2Page},
   { path: 'searchGenre', component: SearchgenresComponent},
   { path: 'yearlyTrending', component: YearlytrendingComponent},
+  { path: 'mostAnticipated', component: MostanticipatedComponent },
   {
     path: 'searchtab',
     loadChildren: () => import('./searchtab/searchtab.module').then( m => m.SearchtabPageModule)

@@ -8,13 +8,72 @@
 
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
   <div *ngIf="currentProfile">
-  <ion-list-header mode="ios">{{currentProfile.username}}</ion-list-header>
-  <ion-avatar class="ion-margin-start">
-    <img [src]="currentProfile.avatar">
-  </ion-avatar>
-</div>
-  <ion-card *ngFor="let playing of currentPlaying">
-      {{playing.name}}
-  </ion-card>
+    <ion-list-header mode="ios">{{currentProfile.username}}</ion-list-header>
+    <ion-avatar class="ion-margin-start">
+      <img [src]="currentProfile.avatar">
+    </ion-avatar>
+  </div>
+
+  <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
+    <br>
+    <ion-label>Currently Playing</ion-label>
+    <div class="userGames" scrollX="true" scrollY="false">
+      <ion-card (click)="goToDetails(playing)" class="scrollItem" *ngFor="let playing of currentPlaying">
+        <div class="name">{{playing.name}}</div>
+        <img class="gameBackground" [src]="playing.background_image">
+      </ion-card>
+    </div>
+
+    <br>
+    <ion-label>Wishlist</ion-label>
+    <div class="userGames" scrollX="true" scrollY="false">
+      <ion-card (click)="goToDetails(toplay)" class="scrollItem" *ngFor="let toplay of currentToPlay">
+        <div class="name">{{toplay.name}}</div>
+        <img class="gameBackground" [src]="toplay.background_image">
+        <div *ngIf="!toplay.released" class="date">TBA</div>
+        <div *ngIf="toplay.released" class="date">{{ toplay.released | date: 'dd/MM/yyyy' }}</div>
+      </ion-card>
+    </div>
+
+    <br>
+    <div>
+      <ion-label>Completed</ion-label>
+      <div class="userGames" scrollX="true" scrollY="false">
+        <ion-card (click)="goToDetails(beaten)" class="scrollItem" *ngFor="let beaten of currentBeaten">
+          <div class="name">{{beaten.name}}</div>
+          <img class="gameBackground" [src]="beaten.background_image">
+        </ion-card>
+      </div>
+    </div>
+
+    <br>
+    <ion-label>Yet To Play</ion-label>
+    <div class="userGames" scrollX="true" scrollY="false">
+      <ion-card (click)="goToDetails(yet)" class="scrollItem" *ngFor="let yet of currentYet">
+        <div class="name">{{yet.name}}</div>
+        <img class="gameBackground" [src]="yet.background_image">
+      </ion-card>
+    </div>
+
+    <br>
+    <ion-label>Dropped</ion-label>
+    <div class="userGames" scrollX="true" scrollY="false">
+      <ion-card (click)="goToDetails(dropped)" class="scrollItem" *ngFor="let dropped of currentDropped">
+        <div class="name">{{dropped.name}}</div>
+        <img class="gameBackground" [src]="dropped.background_image">
+      </ion-card>
+    </div>
+  </ion-reorder-group>
+
 </ion-content>
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Maven+Pro:700&display=swap');
+</style>
