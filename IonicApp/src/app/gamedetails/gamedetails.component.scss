@@ -4,6 +4,43 @@ ion-title{
     margin: auto;
 }
 
+ion-button{
+    --box-shadow: none !important;
+}
+ion-button:hover{
+    ion-icon{
+        color: #10dc60 !important;
+    }
+}
+
+.forName{
+    margin-left: 1em;
+}
+
+.updateItem{
+    margin-inline-start: 0.7em;
+    width: 73%;
+    display: inline-block;
+    --background: transparent !important;
+    --border-color: #10dc60 !important; 
+    --box-shadow: none !important;
+    --color: #ffffff !important;
+}
+
+.wishlistButton{
+    --background: transparent !important;
+    --border-color: #10dc60 !important; 
+}
+
+.saveButton{
+    margin-top: -3.1em;
+    margin-left: 1em;
+    height: 3.4em;
+    border: #10dc60 !important;
+    --background: transparent !important;
+    --border-color: #10dc60 !important;
+}
+
 ion-backdrop {
     opacity: 0.5;
   }
@@ -15,6 +52,10 @@ ion-segment{
 
 .description{
     font-size: 10pt;
+}
+
+.descriptionText{
+    margin: 1em;
 }
 
 .genres{
@@ -29,9 +70,10 @@ ion-img{
 
 ion-segment-button{
     width: 10em;
+    height: 3em;
+    font-size: 12pt;
 }
 
 .segmenter{
     width: 100%;
-    
 }

@@ -28,6 +28,11 @@ export class SearchtabPage implements OnInit {
     console.log("routed")
   }
 
+  goToMostAnticipated(){
+    this.router.navigate(['mostAnticipated'])
+    console.log("routed")
+  }
+
   routeComponent(componentName: string){
     this.router.navigate([componentName])
   }

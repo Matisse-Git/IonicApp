@@ -1,10 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Search</ion-title>
+    <ion-title>Explore</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div class="searchOptions">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>For You</ion-label>
+      </ion-item-divider>
+      <ion-item (click)="goToSearchName()" lines="none" detail="true">
+        <ion-icon slot="start" name="checkmark-circle-outline" color="white"></ion-icon>
+        <ion-label>Top Picks</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </div>
+
+  <div class="searchOptions">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label>New Releases / Upcoming Games</ion-label>
+      </ion-item-divider>
+      <ion-item (click)="goToMostAnticipated()" lines="none" detail="true">
+        <ion-icon slot="start" name="grid" color="white"></ion-icon>
+        <ion-label>This Month</ion-label>
+      </ion-item>
+      <ion-item (click)="goToMostAnticipated()" lines="none" detail="true">
+        <ion-icon slot="start" name="heart" color="white"></ion-icon>
+        <ion-label>Most Anticipated</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </div>
+
   <div class="searchOptions">
     <ion-item-group>
       <ion-item-divider>

@@ -1,5 +1,90 @@
 ion-header{
   text-align: center;
 }
+ion-list-header{
+  color: white;
+}
+
+ion-text{
+  font-size: 15pt;
+  background-color: transparent;
+  color: white;
+}
+
+ion-label{
+  margin-left: 0.5em;
+  font-size: 20pt;
+  font-family: 'raleway';
+  display: inline-block;
+}
+
+ion-reorder{
+  display: inline-block;
+  margin-left: 1em;
+}
+
+ion-card{
+  height: 15em;
+  width: 10em;
+}
+
+.gameBackground{
+  object-fit: cover;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.userGames[scrollx=true] {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+     display: none;
+  }
+   .scrollItem {
+     flex: 0 0 auto;
+  }
+  margin-left: 0.5;
+}
+
+/*.scrollItem:hover{
+  width: 15em; 
+  .gameBackground{
+    opacity: 0.6;
+  }
+}*/
+
+.scrollItem{
+  position: relative;
+}
+
+.name{
+  width: 75%;
+  height: 60px;
+  margin-left: 1em;
+  position: absolute;
+  z-index: 99;
+  bottom: 60px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-family: 'Maven Pro', sans-serif;
+  font-size: 13pt;
+}
+
+.date{
+  width: 75%;
+  height: 60px;
+  margin-left: 1.5em;
+  position: absolute;
+  z-index: 99;
+  bottom: 140px;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  font-family: 'Maven Pro', sans-serif;
+  font-size: 10pt;
+}
 
 
