@@ -47,7 +47,7 @@ export class MyreleasesComponent implements OnInit {
       this.currentMonth = "jan";
     }
     if (segmentValue == "FEB") {
-      this.currentMonth = "dec";
+      this.currentMonth = "feb";
     }
     if (segmentValue == "MAR") {
       this.currentMonth = "mar"

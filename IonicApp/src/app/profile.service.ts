@@ -75,7 +75,6 @@ export class ProfileService {
       password: 'Simbaenkiara<3'
     });
     var { users } = rawger;
-    console.log((await users('Matttske').games(status)).count())
     var nextAmount = Math.round((await users('Matttske').games(status)).count() / 20);
     console.log(nextAmount)
     for (let index = 0; index < nextAmount; index++) {
