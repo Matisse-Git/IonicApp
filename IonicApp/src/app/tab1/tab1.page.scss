@@ -18,6 +18,11 @@ ion-label{
   display: inline-block;
 }
 
+.loadingText{
+  margin-left: 3em;
+  margin-top: 5em;
+}
+
 ion-reorder{
   display: inline-block;
   margin-left: 1em;
@@ -85,6 +90,26 @@ ion-card{
   font-weight: bold;
   font-family: 'Maven Pro', sans-serif;
   font-size: 10pt;
+}
+
+.profileHeader{
+  border-bottom: solid 1px #10dc60;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 2em;
+}
+ion-list-header{
+  width: 100%;
+}
+ion-button{
+  margin-left: 2em;
+  width: fit-content;
+  margin-top: 1.3em;
+}
+.releaseButtonLabel{
+  font-family: 'raleway';
+  text-transform: capitalize;
 }
 
 

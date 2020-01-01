@@ -6,17 +6,26 @@
   </ion-toolbar>
 </ion-header>
 
+<ion-content *ngIf="!currentProfile">
+  <div class="loadingText">
+  <ion-label>Loading please wait...</ion-label>
+</div>
+</ion-content>
 
-<ion-content>
+<ion-content *ngIf="currentProfile">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   
-  <div *ngIf="currentProfile">
+  <div class="profileHeader" *ngIf="currentProfile">
     <ion-list-header mode="ios">{{currentProfile.username}}</ion-list-header>
     <ion-avatar class="ion-margin-start">
       <img [src]="currentProfile.avatar">
     </ion-avatar>
+    <ion-button (click)="goToMyReleases()">
+      <ion-icon name="grid" mode="ios"></ion-icon>
+      <ion-label text-capitalize class="releaseButtonLabel" mode="ios">My Releases</ion-label>
+    </ion-button>
   </div>
 
   <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">

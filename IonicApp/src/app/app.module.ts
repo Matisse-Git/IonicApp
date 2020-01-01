@@ -19,11 +19,12 @@ import { Tab2Page } from './tab2/tab2.page';
 import { SearchgenresComponent } from './searchgenres/searchgenres.component';
 import { YearlytrendingComponent } from './yearlytrending/yearlytrending.component';
 import { MostanticipatedComponent } from './mostanticipated/mostanticipated.component';
+import { MyreleasesComponent } from './myreleases/myreleases.component';
 
 @NgModule({
   declarations: [AppComponent, GamedetailsComponent, SearchpressComponent, 
-    Tab2Page, SearchgenresComponent, YearlytrendingComponent,MostanticipatedComponent],
-  entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent, MostanticipatedComponent],
+    Tab2Page, SearchgenresComponent, YearlytrendingComponent,MostanticipatedComponent,MyreleasesComponent],
+  entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent,MyreleasesComponent, MostanticipatedComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, 
     LongPressModule, IonicModule, FormsModule],
   providers: [

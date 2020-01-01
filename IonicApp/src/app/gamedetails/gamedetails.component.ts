@@ -23,10 +23,8 @@ export class GamedetailsComponent implements OnInit {
   constructor(private detail: GamedetailsService, private profile: ProfileService, private messages: MessagesService) { }
 
   async ngOnInit() {
-    this.presentToast('loading...', 1500)
     this.showBackdrop = true;
     this.currentGame = this.detail.getGame();
-    await this.profile.refreshAll();
     this.currentGame = this.checkStatus(this.currentGame)
     console.log(this.currentGame)
     this.initializeOptions();
@@ -99,7 +97,8 @@ export class GamedetailsComponent implements OnInit {
     else {
       await this.profile.updateGameStatus(gameID, gameStatus)
     }
-    console.log(gameID.toString() + "updated to" + gameStatus.toString())
+    console.log(gameID.toString() + " updated to " + gameStatus.toString())
+    this.profile.refreshAll();
   }
 
   presentToast(message: string, duration: number){

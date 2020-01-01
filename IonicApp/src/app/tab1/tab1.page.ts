@@ -31,58 +31,31 @@ export class Tab1Page {
   currentYet: IGame[] = [];
   currentCollections: IGame[] = [];
   currentProfile: IUser;
+  nextToPlay: IGame[] = [];
 
   today: any;
 
   async ngOnInit(){
-    var rawger = await Rawger({
-      email: 'matttske@gmail.com',
-      password: 'Simbaenkiara<3'
-    });
-    var { users } = rawger;
-
-    this.currentProfile = (await users('matttske').profile()).get();
-    this.currentPlaying = (await users('Matttske').games('playing')).raw()
-    this.currentToPlay = (await users('Matttske').games('toplay')).raw()
-    this.currentBeaten  = (await users('Matttske').games('beaten ')).raw()
-    this.currentDropped = (await users('Matttske').games('dropped')).raw()
-    this.currentYet = (await users('Matttske').games('yet ')).raw()
-    this.currentCollections = (await users('Matttske').collections()).raw()
-
-    this.profile.currentProfile = (await users('matttske').profile()).get();
-    this.profile.currentPlaying = (await users('Matttske').games('playing')).raw()
-    this.profile.currentToPlay = (await users('Matttske').games('toplay')).raw()
-    this.profile.currentBeaten  = (await users('Matttske').games('beaten ')).raw()
-    this.profile.currentDropped = (await users('Matttske').games('dropped')).raw()
-    this.profile.currentYet = (await users('Matttske').games('yet ')).raw()
-    this.profile.currentCollections = (await users('Matttske').collections()).raw()
+    await this.profile.refreshAll();
+    this.currentProfile = await this.profile.getProfile()
+    this.currentPlaying = this.profile.getPlaying()
+    this.currentToPlay = this.profile.getToPlay() 
+    this.currentBeaten  = this.profile.getBeaten()
+    this.currentDropped = this.profile.getDropped()
+    this.currentYet = this.profile.getYet()
+    this.currentCollections = this.profile.getCollections()
 
     this.today = Date.now();
   }
 
   async doRefresh(event) {
-    console.log('Begin async operation');
-    var rawger = await Rawger({
-      email: 'matttske@gmail.com',
-      password: 'Simbaenkiara<3'
-    });
-    var { users } = rawger;
-    
-    this.currentProfile = (await users('matttske').profile()).get();
-    this.currentPlaying = (await users('Matttske').games('playing')).raw()
-    this.currentToPlay = (await users('Matttske').games('toplay')).raw()
-    this.currentBeaten  = (await users('Matttske').games('beaten ')).raw()
-    this.currentDropped = (await users('Matttske').games('dropped')).raw()
-    this.currentYet = (await users('Matttske').games('yet ')).raw()
-    this.currentCollections = (await users('Matttske').collections()).raw()  
-
-    this.profile.currentProfile = (await users('matttske').profile()).get();
-    this.profile.currentPlaying = (await users('Matttske').games('playing')).raw()
-    this.profile.currentToPlay = (await users('Matttske').games('toplay')).raw()
-    this.profile.currentBeaten  = (await users('Matttske').games('beaten ')).raw()
-    this.profile.currentDropped = (await users('Matttske').games('dropped')).raw()
-    this.profile.currentYet = (await users('Matttske').games('yet ')).raw()
-    this.profile.currentCollections = (await users('Matttske').collections()).raw()
+    this.currentProfile = await this.profile.getProfile()
+    this.currentPlaying = this.profile.getPlaying()
+    this.currentToPlay = this.profile.getToPlay()
+    this.currentBeaten  = this.profile.getBeaten()
+    this.currentDropped = this.profile.getDropped()
+    this.currentYet = this.profile.getYet()
+    this.currentCollections = this.profile.getCollections()
     setTimeout(() => {
       console.log('Async operation has ended');
       event.target.complete();
@@ -111,6 +84,11 @@ export class Tab1Page {
       this.router.navigate(['details'])
       console.log("routed")
     })
+  }
+
+  goToMyReleases(){
+    this.router.navigate(['myReleases'])
+    console.log("routed")
   }
 
 

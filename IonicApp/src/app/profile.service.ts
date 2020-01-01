@@ -43,12 +43,18 @@ export class ProfileService {
       password: 'Simbaenkiara<3'
     });
     var { users } = rawger;
+
     this.currentProfile = (await users('matttske').profile()).get();
     this.currentPlaying = (await users('Matttske').games('playing')).raw()
+    this.currentPlaying = await this.getNext('playing', this.currentPlaying)
     this.currentToPlay = (await users('Matttske').games('toplay')).raw()
+    this.currentToPlay = await this.getNext('toplay', this.currentToPlay)
     this.currentBeaten  = (await users('Matttske').games('beaten ')).raw()
+    this.currentBeaten = await this.getNext('beaten', this.currentBeaten)
     this.currentDropped = (await users('Matttske').games('dropped')).raw()
+    this.currentDropped = await this.getNext('dropped', this.currentDropped)
     this.currentYet = (await users('Matttske').games('yet ')).raw()
+    this.currentYet = await this.getNext('yet', this.currentYet)
     this.currentCollections = (await users('Matttske').collections()).raw()
   }
   
@@ -58,7 +64,29 @@ export class ProfileService {
       password: 'Simbaenkiara<3'
     });
     var { users } =  rawger
+    console.log("update begin")
     await users('matttske').update().game(gameID, { status: status});
+    console.log("update complete")
+  }
+
+  async getNext(status: string, gamesIn: IGame[]){
+    var rawger = await Rawger({
+      email: 'matttske@gmail.com',
+      password: 'Simbaenkiara<3'
+    });
+    var { users } = rawger;
+    console.log((await users('Matttske').games(status)).count())
+    var nextAmount = Math.round((await users('Matttske').games(status)).count() / 20);
+    console.log(nextAmount)
+    for (let index = 0; index < nextAmount; index++) {
+      var nextToPlay = await (await users('Matttske').games(status)).next()
+      if (nextToPlay != null){
+        nextToPlay.raw().forEach(element => {
+          gamesIn.push(element)
+        });
+      }
+    }
+    return gamesIn;
   }
 
   async getProfile(){
