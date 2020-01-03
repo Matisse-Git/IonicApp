@@ -58,7 +58,7 @@
       <ion-select-option *ngFor="let status of statusOptions">{{status}}</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-button class="saveButton" (click)="updateGameStatus(currentGame.id, statusSelect.value)"
+  <ion-button  fill="outline" class="saveButton" (click)="updateGameStatus(currentGame.id, statusSelect.value)"
     (click)="presentToast('Added to ' + statusSelect.value + '!', 1500)">Save</ion-button>
   </ion-toolbar>
 </ion-footer>
