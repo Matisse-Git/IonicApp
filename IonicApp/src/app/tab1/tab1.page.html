@@ -3,6 +3,11 @@
     <ion-title>
       My Profile
     </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button  (click)="createPopover($event)">
+        <ion-icon slot="icon-only" name="more"></ion-icon>
+      </ion-button>
+    </ion-buttons>  
   </ion-toolbar>
 </ion-header>
 
@@ -22,7 +27,7 @@
     <ion-avatar class="ion-margin-start">
       <img [src]="currentProfile.avatar">
     </ion-avatar>
-    <ion-button (click)="goToMyReleases()">
+    <ion-button id="releaseButton" (click)="goToMyReleases()">
       <ion-icon size="large" name="grid"></ion-icon>
       <ion-label text-capitalize class="releaseButtonLabel" mode="ios">My Releases</ion-label>
     </ion-button>

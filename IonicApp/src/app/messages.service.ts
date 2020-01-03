@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastController, LoadingController, PopoverController } from '@ionic/angular';
 import { Tab2Page } from './tab2/tab2.page';
+import { Tab1Page } from './tab1/tab1.page';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class MessagesService {
 
 async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
-      component: Tab2Page,
+      component: Tab1Page,
       event: ev,
       translucent: true
     });

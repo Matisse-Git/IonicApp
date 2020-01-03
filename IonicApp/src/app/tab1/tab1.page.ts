@@ -6,6 +6,9 @@ import { IGame, IUser } from '../app.module';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ProfileService } from '../profile.service';
 import { GamedetailsService } from '../gamedetails.service';
+import { MessagesService } from '../messages.service';
+import { PopoverController } from '@ionic/angular';
+import { LoginpopoverComponent } from '../loginpopover/loginpopover.component';
 var Rawger = require('rawger');
 declare var require: any
 
@@ -16,8 +19,9 @@ declare var require: any
 })
 export class Tab1Page {
 
-  constructor(private service: APIService, private router: Router,private statusBar: StatusBar, 
-    private profile: ProfileService, private detail: GamedetailsService) {
+  constructor(private service: APIService, private router: Router, private statusBar: StatusBar,
+    private profile: ProfileService, private detail: GamedetailsService,
+    private popoverController: PopoverController) {
     this.statusBar.backgroundColorByHexString('#191919');
     this.statusBar.styleLightContent()
   }
@@ -35,15 +39,17 @@ export class Tab1Page {
 
   today: any;
 
-  async ngOnInit(){
-    await this.profile.refreshAll();
-    this.currentProfile = await this.profile.getProfile()
-    this.currentPlaying = this.profile.getPlaying()
-    this.currentToPlay = this.profile.getToPlay() 
-    this.currentBeaten  = this.profile.getBeaten()
-    this.currentDropped = this.profile.getDropped()
-    this.currentYet = this.profile.getYet()
-    this.currentCollections = this.profile.getCollections()
+  async ngOnInit() {
+    if (this.profile.username != null) {
+      await this.profile.refreshAll();
+      this.currentProfile = await this.profile.getProfile()
+      this.currentPlaying = this.profile.getPlaying()
+      this.currentToPlay = this.profile.getToPlay()
+      this.currentBeaten = this.profile.getBeaten()
+      this.currentDropped = this.profile.getDropped()
+      this.currentYet = this.profile.getYet()
+      this.currentCollections = this.profile.getCollections()
+    }
 
     this.today = Date.now();
   }
@@ -52,7 +58,7 @@ export class Tab1Page {
     this.currentProfile = await this.profile.getProfile()
     this.currentPlaying = this.profile.getPlaying()
     this.currentToPlay = this.profile.getToPlay()
-    this.currentBeaten  = this.profile.getBeaten()
+    this.currentBeaten = this.profile.getBeaten()
     this.currentDropped = this.profile.getDropped()
     this.currentYet = this.profile.getYet()
     this.currentCollections = this.profile.getCollections()
@@ -86,9 +92,18 @@ export class Tab1Page {
     })
   }
 
-  goToMyReleases(){
+  goToMyReleases() {
     this.router.navigate(['myReleases'])
     console.log("routed")
+  }
+
+  async createPopover(ev){
+    const popover = await this.popoverController.create({
+      component: LoginpopoverComponent,
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
   }
 
 

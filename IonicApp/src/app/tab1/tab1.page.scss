@@ -4,6 +4,9 @@ ion-header{
 ion-list-header{
   color: white;
 }
+ion-title{
+  margin-left: 2em;
+}
 
 ion-text{
   font-size: 15pt;
@@ -99,14 +102,21 @@ ion-card{
   flex-wrap: wrap;
   padding-bottom: 2em;
 }
+
 ion-list-header{
   width: 100%;
 }
-ion-button{
+
+#releaseButton{
   margin-left: 2em;
   width: fit-content;
   margin-top: 1.3em;
 }
+
+#moreButton{
+  --background: transparent !important;
+}
+
 .releaseButtonLabel{
   font-family: 'raleway';
   text-transform: capitalize;
