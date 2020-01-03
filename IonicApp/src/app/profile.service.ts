@@ -19,8 +19,8 @@ export class ProfileService {
   rawger: any;
   users: any;
 
-  username: string = 'testWrapper';
-  email: string = 'faes.matisse@gmail.com';
+  username: string = 'matttske';
+  email: string = 'matttske@gmail.com';
   password: string = 'Simbaenkiara<3';
 
   constructor() { }

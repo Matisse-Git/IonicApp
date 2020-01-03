@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GamedetailsService } from '../gamedetails.service';
-import { IGame } from '../app.module';
+import { IGame, IScreenshot } from '../app.module';
 import { ProfileService } from '../profile.service';
 import { MessagesService } from '../messages.service';
+import { APIService } from '../api.service';
 
 @Component({
   selector: 'app-gamedetails',
@@ -12,6 +13,7 @@ import { MessagesService } from '../messages.service';
 export class GamedetailsComponent implements OnInit {
 
   private currentGame: IGame;
+  private currentScreenshots: IScreenshot[];
   statusOptions: String[] = [];
   currentStatus: String;
   wishlistButtonColor: string = 'white';
@@ -20,7 +22,8 @@ export class GamedetailsComponent implements OnInit {
   info: boolean = true;
   description: boolean = false;
 
-  constructor(private detail: GamedetailsService, private profile: ProfileService, private messages: MessagesService) { }
+  constructor(private detail: GamedetailsService, private profile: ProfileService, private messages: MessagesService,
+  private api: APIService) { }
 
   async ngOnInit() {
     this.showBackdrop = true;
@@ -28,6 +31,8 @@ export class GamedetailsComponent implements OnInit {
     this.currentGame = this.checkStatus(this.currentGame)
     console.log(this.currentGame)
     this.initializeOptions();
+    this.currentScreenshots = this.detail.getScreenshots();
+    console.log(this.currentScreenshots)
     this.showBackdrop = false;
   }
 
