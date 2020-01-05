@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularDelegate } from '@ionic/angular';
-import { IGame, IResults } from './app.module';
+import { IGame, IResults, IScreenshotsResult } from './app.module';
 
 
 @Injectable({
@@ -33,6 +33,10 @@ export class APIService {
 
   getGameDetailed(gameID: number){
     return this.client.get<IGame>("https://api.rawg.io/api/games/" + gameID);
+  }
+
+  getGameScreenshots(gameID: number){
+    return this.client.get<IScreenshotsResult>(`https://api.rawg.io/api/games/${gameID}/screenshots`)
   }
 
   searchGames(query: String){

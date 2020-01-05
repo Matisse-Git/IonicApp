@@ -155,6 +155,11 @@ export class SearchgenresComponent implements OnInit {
     this.service.getGameDetailed(gameIn.id).subscribe(game => {
       this.detail.setGame(game);
       console.log("game set")
+    })
+    this.service.getGameScreenshots(gameIn.id).subscribe(screenshots =>{
+      this.detail.clearScreenshots();
+      this.detail.pushScreenshots(screenshots.results);
+      console.log("screenshots set")
       this.router.navigate(['details'])
       console.log("routed")
     })

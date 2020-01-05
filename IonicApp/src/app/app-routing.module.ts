@@ -7,6 +7,7 @@ import { SearchgenresComponent } from './searchgenres/searchgenres.component';
 import { YearlytrendingComponent } from './yearlytrending/yearlytrending.component';
 import { MostanticipatedComponent } from './mostanticipated/mostanticipated.component';
 import { MyreleasesComponent } from './myreleases/myreleases.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'yearlyTrending', component: YearlytrendingComponent},
   { path: 'mostAnticipated', component: MostanticipatedComponent },
   { path: 'myReleases', component: MyreleasesComponent},
+  { path: 'login', component: LoginComponent},
   {
     path: 'searchtab',
     loadChildren: () => import('./searchtab/searchtab.module').then( m => m.SearchtabPageModule)

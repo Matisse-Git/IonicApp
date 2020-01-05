@@ -20,11 +20,15 @@ import { SearchgenresComponent } from './searchgenres/searchgenres.component';
 import { YearlytrendingComponent } from './yearlytrending/yearlytrending.component';
 import { MostanticipatedComponent } from './mostanticipated/mostanticipated.component';
 import { MyreleasesComponent } from './myreleases/myreleases.component';
+import { LoginpopoverComponent } from './loginpopover/loginpopover.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [AppComponent, GamedetailsComponent, SearchpressComponent, 
-    Tab2Page, SearchgenresComponent, YearlytrendingComponent,MostanticipatedComponent,MyreleasesComponent],
-  entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent,MyreleasesComponent, MostanticipatedComponent],
+    Tab2Page, SearchgenresComponent, YearlytrendingComponent,MostanticipatedComponent,MyreleasesComponent,
+    LoginpopoverComponent, LoginComponent],
+  entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent,
+  MyreleasesComponent, MostanticipatedComponent, LoginpopoverComponent, LoginComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, 
     LongPressModule, IonicModule, FormsModule],
   providers: [
@@ -78,6 +82,18 @@ export interface IGame{
   OKT: boolean;
   NOV: boolean;
   DEC: boolean;
+}
+
+export interface IScreenshotsResult{
+  results: IScreenshot[];
+}
+
+export interface IScreenshot{
+  id: number;
+  image: String;
+  width: number;
+  height: number;
+  is_deleted: boolean;
 }
 
 export interface IGenres{
