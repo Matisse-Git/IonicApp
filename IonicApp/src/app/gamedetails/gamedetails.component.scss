@@ -57,10 +57,38 @@ ion-segment{
     display: inline;
 }
 
-ion-img{
-    height: 10em;
+.cover{
+    width: 100%;
+    margin-left: 0em;
+    position: absolute;
+    height: 8em;
     object-fit: cover;
-    border-radius: 20%;
+    bottom: -1.5em;
+    left: 0em;
+    opacity: 65%;
+    filter: blur(2px);
+}
+
+.partition{
+    display: inline-block;
+    width: 50%;
+    border: solid white 1px;
+    height: 3em;
+}
+#label{
+    text-align: right;
+    padding-right: 0.5em;
+}
+#names{
+    text-align: left;
+}
+
+ion-card{
+    padding: 2em 0.7em 2em 0.7em;
+    --background: #1d1d1d !important;
+    --color: white !important;
+    font-size: 9.5pt;
+    border-radius: 1em !important;
 }
 
 ion-segment-button{
@@ -69,7 +97,9 @@ ion-segment-button{
     font-size: 10pt;
     --border-radius: 2em
 }
-
+.platformName{
+    margin: 0em;
+}
 .footerToolbar{
     --background: #1d1d1d !important;
     --border-color: #10dc60 !important;

@@ -1,6 +1,8 @@
 <ion-backdrop *ngIf="showBackdrop" tappable="false"></ion-backdrop>
 <ion-header *ngIf="currentGame">
   <ion-toolbar>
+    <ion-img class="cover" [src]="currentGame.background_image">
+    </ion-img>
     <ion-buttons slot="start">
       <ion-back-button color="success"></ion-back-button>
     </ion-buttons>
@@ -15,9 +17,6 @@
 </ion-header>
 
 <ion-content *ngIf="currentGame">
-  <ion-card>
-    <ion-img class="cover" [src]="currentGame.background_image"></ion-img>
-  </ion-card>
   <div class="segmenter">
     <ion-segment #segment value="info" (ionChange)="segmentChanged($event, segment.value)" padding color="success"
       mode="ios">
@@ -30,42 +29,40 @@
     </ion-segment>
   </div>
 
+
+  <ion-button mode="ios">
+    <ion-select #statusSelect [value]="currentStatus" mode="ios" interface="action-sheet"
+      (ionChange)="updateGameStatus(currentGame.id, statusSelect.value)"
+      (ionChange)="presentToast('Added to ' + statusSelect.value + '!', 1500)">
+      <ion-select-option mode="ios" *ngFor="let status of statusOptions">{{status}}</ion-select-option>
+    </ion-select>
+  </ion-button>
+
   <div>
 
     <div *ngIf="info">
-      <ion-item-divider>
-        <ion-label slot="start">Platforms</ion-label>
-      </ion-item-divider>
-      <ion-item class="forName" *ngFor="let platforms of currentGame.platforms" lines="none">
-        <ion-label>{{platforms.platform.name}}</ion-label>
-      </ion-item>
-      <ion-item-divider>
-        <ion-label slot="start">Genres</ion-label>
-      </ion-item-divider>
-      <ion-item class="forName" *ngFor="let genre of currentGame.genres" lines="none">
-        <ion-label>{{genre.name}}</ion-label>
-      </ion-item>
-      <ion-card *ngFor="let screenshot of currentScreenshots" >
-      <img [src]="screenshot.image">
-    </ion-card>
+      <ion-card>
+        <div id="label" class="partition">
+          <ion-label>Platforms: </ion-label>
+        </div>
+        <div id="names" class="partition">
+          <ion-text class="platformName" *ngFor="let platforms of currentGame.platforms; let i = index">
+
+            {{platforms.platform.name}}
+            <ion-text *ngIf="i + 1 < currentGame.platforms.length">, </ion-text>
+          </ion-text>
+        </div>
+      </ion-card>
+
+      <!--
+      <ion-card *ngFor="let screenshot of currentScreenshots">
+        <img [src]="screenshot.image">
+      </ion-card>
+      -->
     </div>
 
     <ion-text *ngIf="description">
       <div class="descriptionText" [innerHTML]="currentGame.description"></div>
     </ion-text>
-
   </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar class="footerToolbar">
-    <ion-item class="updateItem" lines="none">
-      <ion-label>Add To</ion-label>
-      <ion-select #statusSelect [value]="currentStatus" scrollable mode="ios" interface="alert">
-        <ion-select-option *ngFor="let status of statusOptions">{{status}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-    <ion-button fill="outline" class="saveButton" (click)="updateGameStatus(currentGame.id, statusSelect.value)"
-      (click)="presentToast('Added to ' + statusSelect.value + '!', 1500)">Save</ion-button>
-  </ion-toolbar>
-</ion-footer>

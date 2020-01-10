@@ -3,6 +3,7 @@ import { IGame, IPlatform, IPlatforms, IResults } from '../app.module';
 import { APIService } from '../api.service';
 import { GamedetailsService } from '../gamedetails.service';
 import { Router } from '@angular/router';
+import { MethodService } from '../method.service';
 
 @Component({
   selector: 'app-searchgenres',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class SearchgenresComponent implements OnInit {
 
-  constructor(private service: APIService, private detail: GamedetailsService, private router: Router) { }
+  constructor(private service: APIService, private detail: GamedetailsService, private router: Router, private methods: MethodService) { }
 
   genreOptions: String[] = [];
   sortingOptions: String[] = [];
@@ -152,17 +153,7 @@ export class SearchgenresComponent implements OnInit {
   }
 
   goToDetails(gameIn: IGame) {
-    this.service.getGameDetailed(gameIn.id).subscribe(game => {
-      this.detail.setGame(game);
-      console.log("game set")
-    })
-    this.service.getGameScreenshots(gameIn.id).subscribe(screenshots =>{
-      this.detail.clearScreenshots();
-      this.detail.pushScreenshots(screenshots.results);
-      console.log("screenshots set")
-      this.router.navigate(['details'])
-      console.log("routed")
-    })
+    this.methods.goToDetails(gameIn)
   }
 
   checkPlatforms(games: IResults){

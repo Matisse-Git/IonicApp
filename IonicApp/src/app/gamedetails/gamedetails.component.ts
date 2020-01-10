@@ -15,7 +15,7 @@ export class GamedetailsComponent implements OnInit {
   private currentGame: IGame;
   private currentScreenshots: IScreenshot[];
   statusOptions: String[] = [];
-  currentStatus: String;
+  currentStatus: String = "ADD";
   wishlistButtonColor: string = 'white';
   showBackdrop: boolean;
   currentSegment: string = 'info';
@@ -27,12 +27,27 @@ export class GamedetailsComponent implements OnInit {
 
   async ngOnInit() {
     this.showBackdrop = true;
-    this.currentGame = this.detail.getGame();
-    this.currentGame = this.checkStatus(this.currentGame)
-    console.log(this.currentGame)
     this.initializeOptions();
-    this.currentScreenshots = this.detail.getScreenshots();
-    console.log(this.currentScreenshots)
+    if (this.detail.getScreenshots() != null && this.detail.getGame() != null){
+      this.currentGame = await this.detail.getGame();
+      this.currentGame = this.checkStatus(this.currentGame)
+      this.currentScreenshots = this.detail.getScreenshots();
+      console.log(this.currentGame)
+      console.log(this.currentScreenshots)
+      console.log(this.currentGame.platforms.length)
+    }
+    else{
+      this.api.getGameDetailed(401805).subscribe(game =>{
+        this.currentGame = game;
+        console.log(this.currentGame)
+        console.log(this.currentScreenshots)
+        console.log(this.currentGame.platforms.length)
+      })
+      this.api.getGameScreenshots(401805).subscribe(screenshots =>{
+        this.currentScreenshots = screenshots.results;
+      })
+      this.currentStatus = "ADD"
+    }
     this.showBackdrop = false;
   }
 

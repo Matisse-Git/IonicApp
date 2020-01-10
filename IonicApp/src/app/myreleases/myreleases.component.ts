@@ -4,6 +4,7 @@ import { APIService } from '../api.service';
 import { ProfileService } from '../profile.service';
 import { GamedetailsService } from '../gamedetails.service';
 import { Router } from '@angular/router';
+import { MethodService } from '../method.service';
 
 @Component({
   selector: 'app-myreleases',
@@ -31,7 +32,10 @@ export class MyreleasesComponent implements OnInit {
   skeletonItems: any;
   currentPage: number = 1;
 
-  constructor(private service: APIService, private profile: ProfileService, private detail: GamedetailsService, private router: Router) { }
+  constructor(private service: APIService, private profile: ProfileService, private detail: GamedetailsService, private router: Router, 
+  private methods: MethodService) {
+    
+  }
 
   async ngOnInit() {
     this.currentMonth = "jan";
@@ -94,17 +98,7 @@ export class MyreleasesComponent implements OnInit {
   }
 
   goToDetails(gameIn: IGame) {
-    this.service.getGameDetailed(gameIn.id).subscribe(game => {
-      this.detail.setGame(game);
-      console.log("game set")
-    })
-    this.service.getGameScreenshots(gameIn.id).subscribe(screenshots =>{
-      this.detail.clearScreenshots();
-      this.detail.pushScreenshots(screenshots.results);
-      console.log("screenshots set")
-      this.router.navigate(['details'])
-      console.log("routed")
-    })
+    this.methods.goToDetails(gameIn)
   }
 
 

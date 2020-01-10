@@ -103,6 +103,7 @@ export interface IGenres{
 
 export interface IPlatforms{
   platform: IPlatform;
+  length: number;
 }
 
 export interface IPlatform{

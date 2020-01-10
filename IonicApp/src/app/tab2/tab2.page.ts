@@ -9,6 +9,7 @@ import { GamedetailsService } from '../gamedetails.service';
 import { PopoverController } from '@ionic/angular';
 import { MessagesService } from '../messages.service';
 import { SearchpressComponent } from '../searchpress/searchpress.component';
+import { MethodService } from '../method.service';
 
 @Component({
   selector: 'app-tab2',
@@ -23,7 +24,7 @@ export class Tab2Page {
 
   constructor(private service: APIService, public toastController: ToastController,
     public loadingController: LoadingController, private router: Router, private detail: GamedetailsService
-    , public popoverController: PopoverController, private messages: MessagesService) { }
+    , public popoverController: PopoverController, private messages: MessagesService, private methods: MethodService) { }
 
   ngOnInit() { }
 
@@ -95,17 +96,7 @@ export class Tab2Page {
   }
 
   goToDetails(gameIn: IGame) {
-    this.service.getGameDetailed(gameIn.id).subscribe(game => {
-      this.detail.setGame(game);
-      console.log("game set")
-    })
-    this.service.getGameScreenshots(gameIn.id).subscribe(screenshots =>{
-      this.detail.clearScreenshots();
-      this.detail.pushScreenshots(screenshots.results);
-      console.log("screenshots set")
-      this.router.navigate(['details'])
-      console.log("routed")
-    })
+    this.methods.goToDetails(gameIn)
   }
 
 

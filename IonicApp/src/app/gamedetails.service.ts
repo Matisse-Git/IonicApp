@@ -11,7 +11,9 @@ export class GamedetailsService {
   private currentGame: IGame;
   private currentScreenshots: IScreenshot[] = [];
 
-  constructor(private api: APIService) { }
+  constructor(private api: APIService) { 
+
+  }
 
   setGame(gameIn: IGame){
     this.currentGame = gameIn;
