@@ -1,6 +1,6 @@
 ion-title{
     text-align: center;
-    font-size: 12pt;
+    font-size: 14pt;
     margin: auto;
 }
 
@@ -28,7 +28,7 @@ ion-content{
     z-index: 99;
     opacity: 100% !important;
     height: fit-content;
-    font-size: 15pt;
+    font-size: 10pt;
 }
 
 ion-grid, ion-col, ion-row{
@@ -85,6 +85,7 @@ ion-segment-button{
     font-size: 10pt;
     --border-radius: 2em
 }
+
 .platformName{
     margin: 0em;
 }

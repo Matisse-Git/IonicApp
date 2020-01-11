@@ -1,4 +1,4 @@
-<!-- <ion-backdrop *ngIf="showBackdrop" tappable="false"></ion-backdrop>
+<ion-backdrop *ngIf="showBackdrop" tappable="false"></ion-backdrop>
 <ion-header *ngIf="currentGame" mode="ios">
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -12,28 +12,9 @@
       <ion-icon name="gift" [color]="wishlistButtonColor"></ion-icon>
     </ion-button>
   </ion-toolbar>
-</ion-header> -->
-
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>My Navigation Bar</ion-title>
-  </ion-toolbar>
-
-  <ion-toolbar>
-    <ion-title>Subheader</ion-title>
-  </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="currentGame" fullscreen="true">
-
-  <ion-header mode="ios" collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">My Navigation Bar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content *ngIf="currentGame">
 
   <ion-img class="cover" [src]="currentGame.background_image">
   </ion-img>
@@ -82,6 +63,16 @@
         <div>
           <ion-text class="descriptionText" *ngIf="currentGame.metacritic">{{currentGame.metacritic}}</ion-text>
           <a *ngIf="!currentGame.metacritic" [href]="currentGame.metacritic_url" class="descriptionText">Click Here To Go To Metacritic Page</a>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <ion-text class="labelHeader">Developers: </ion-text>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-text class="descriptionText" *ngFor="let dev of currentGame.developers">{{dev}}</ion-text>
         </div>
       </ion-col>
     </ion-row>

@@ -22,13 +22,14 @@ import { MostanticipatedComponent } from './mostanticipated/mostanticipated.comp
 import { MyreleasesComponent } from './myreleases/myreleases.component';
 import { LoginpopoverComponent } from './loginpopover/loginpopover.component';
 import { LoginComponent } from './login/login.component';
+import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
 
 @NgModule({
   declarations: [AppComponent, GamedetailsComponent, SearchpressComponent, 
     Tab2Page, SearchgenresComponent, YearlytrendingComponent,MostanticipatedComponent,MyreleasesComponent,
-    LoginpopoverComponent, LoginComponent],
+    LoginpopoverComponent, LoginComponent, Gamedetails2Page],
   entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent,
-  MyreleasesComponent, MostanticipatedComponent, LoginpopoverComponent, LoginComponent],
+  MyreleasesComponent, MostanticipatedComponent, LoginpopoverComponent, LoginComponent, Gamedetails2Page],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, 
     LongPressModule, IonicModule, FormsModule],
   providers: [
