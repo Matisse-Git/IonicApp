@@ -19,7 +19,7 @@ export class MethodService {
         this.detail.clearScreenshots();
         this.detail.pushScreenshots(screenshots.results);
         console.log("screenshots set")
-        this.router.navigate(['details'])
+        this.router.navigate(['details2'])
         console.log("routed")
       })
     })

@@ -8,6 +8,7 @@ import { YearlytrendingComponent } from './yearlytrending/yearlytrending.compone
 import { MostanticipatedComponent } from './mostanticipated/mostanticipated.component';
 import { MyreleasesComponent } from './myreleases/myreleases.component';
 import { LoginComponent } from './login/login.component';
+import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
 
 const routes: Routes = [
   {
@@ -21,10 +22,16 @@ const routes: Routes = [
   { path: 'mostAnticipated', component: MostanticipatedComponent },
   { path: 'myReleases', component: MyreleasesComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'details2', component: Gamedetails2Page},
   {
     path: 'searchtab',
     loadChildren: () => import('./searchtab/searchtab.module').then( m => m.SearchtabPageModule)
+  },
+  {
+    path: 'gamedetails2',
+    loadChildren: () => import('./gamedetails2/gamedetails2.module').then( m => m.Gamedetails2PageModule)
   }
+
 
 ];
 @NgModule({
