@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content>
-  <div>
+  <div *ngIf="!skeleton">
     <ion-card (click)="goToDetails(game)" class="item-text-wrap" mode="ios" detail="true"
       *ngFor="let game of currentGames">
       <img class="backgroundIMG" [src]="game.background_image" alt="Image Not Found :(">

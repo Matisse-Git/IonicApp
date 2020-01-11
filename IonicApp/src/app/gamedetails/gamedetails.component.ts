@@ -37,13 +37,13 @@ export class GamedetailsComponent implements OnInit {
       console.log(this.currentGame.platforms.length)
     }
     else{
-      this.api.getGameDetailed(401805).subscribe(game =>{
+      this.api.getGameDetailed(9767).subscribe(game =>{
         this.currentGame = game;
         console.log(this.currentGame)
         console.log(this.currentScreenshots)
         console.log(this.currentGame.platforms.length)
       })
-      this.api.getGameScreenshots(401805).subscribe(screenshots =>{
+      this.api.getGameScreenshots(9767).subscribe(screenshots =>{
         this.currentScreenshots = screenshots.results;
       })
       this.currentStatus = "ADD"

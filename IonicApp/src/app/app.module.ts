@@ -60,6 +60,7 @@ export interface IGame{
   genres: IGenres[];
   background_image: String; 
   platforms: IPlatforms[];
+  metacritic_url: String;
   score: number;
   playstation: boolean;
   xbox: boolean;
