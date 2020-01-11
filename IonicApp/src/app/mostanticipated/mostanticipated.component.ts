@@ -30,7 +30,10 @@ export class MostanticipatedComponent implements OnInit {
       this.currentGames = this.checkPlatforms(games)
       this.skeleton = false;
     })
+  }
 
+  disableSkeleton(){
+    this.skeleton = false;
   }
 
   goToDetails(gameIn: IGame) {

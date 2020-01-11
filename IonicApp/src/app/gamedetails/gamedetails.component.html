@@ -1,8 +1,6 @@
 <ion-backdrop *ngIf="showBackdrop" tappable="false"></ion-backdrop>
-<ion-header *ngIf="currentGame">
+<ion-header *ngIf="currentGame" mode="ios">
   <ion-toolbar>
-    <ion-img class="cover" [src]="currentGame.background_image">
-    </ion-img>
     <ion-buttons slot="start">
       <ion-back-button color="success"></ion-back-button>
     </ion-buttons>
@@ -16,21 +14,62 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content *ngIf="currentGame">
-  <div class="segmenter">
-    <ion-segment #segment value="info" (ionChange)="segmentChanged($event, segment.value)" padding color="success"
-      mode="ios">
-      <ion-segment-button value="info" mode="ios">
-        Info
-      </ion-segment-button>
-      <ion-segment-button value="description" mode="ios">
-        Description
-      </ion-segment-button>
-    </ion-segment>
-  </div>
 
+<ion-content *ngIf="currentGame" fullscreen="true">
 
-  <ion-button mode="ios">
+  <ion-img class="cover" [src]="currentGame.background_image">
+  </ion-img>
+
+  <ion-text>
+    <ion-text class="labelHeader">
+      Description:
+    </ion-text>
+    <ion-text>
+      <ion-text>
+        <div class="descriptionText" [innerHTML]="currentGame.description"></div>
+      </ion-text>
+    </ion-text>
+  </ion-text>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+        <ion-text class="labelHeader">Platforms: </ion-text>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-text class="descriptionText" *ngFor="let platforms of currentGame.platforms; let i = index">
+            {{platforms.platform.name}}
+            <ion-text *ngIf="i + 1 < currentGame.platforms.length">, </ion-text>
+          </ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <ion-text class="labelHeader">Released: </ion-text>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-text class="descriptionText" *ngIf="currentGame.released">{{currentGame.released}}</ion-text>
+          <ion-text class="descriptionText" *ngIf="!currentGame.released">TBA</ion-text>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+        <ion-text class="labelHeader">Metacritic: </ion-text>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-text class="descriptionText" *ngIf="currentGame.metacritic">{{currentGame.metacritic}}</ion-text>
+          <a *ngIf="!currentGame.metacritic" [href]="currentGame.metacritic_url" class="descriptionText">Click Here To Go To Metacritic Page</a>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button mode="ios" id="changeStatusButton">
     <ion-select #statusSelect [value]="currentStatus" mode="ios" interface="action-sheet"
       (ionChange)="updateGameStatus(currentGame.id, statusSelect.value)"
       (ionChange)="presentToast('Added to ' + statusSelect.value + '!', 1500)">
@@ -38,31 +77,4 @@
     </ion-select>
   </ion-button>
 
-  <div>
-
-    <div *ngIf="info">
-      <ion-card>
-        <div id="label" class="partition">
-          <ion-label>Platforms: </ion-label>
-        </div>
-        <div id="names" class="partition">
-          <ion-text class="platformName" *ngFor="let platforms of currentGame.platforms; let i = index">
-
-            {{platforms.platform.name}}
-            <ion-text *ngIf="i + 1 < currentGame.platforms.length">, </ion-text>
-          </ion-text>
-        </div>
-      </ion-card>
-
-      <!--
-      <ion-card *ngFor="let screenshot of currentScreenshots">
-        <img [src]="screenshot.image">
-      </ion-card>
-      -->
-    </div>
-
-    <ion-text *ngIf="description">
-      <div class="descriptionText" [innerHTML]="currentGame.description"></div>
-    </ion-text>
-  </div>
 </ion-content>
