@@ -50,6 +50,7 @@ export class Tab1Page {
   }
 
   async doRefresh(event) {
+    await this.profile.refreshAll();
     this.currentProfile = await this.profile.getProfile()
     this.currentPlaying = this.profile.getPlaying()
     this.currentToPlay = this.profile.getToPlay()

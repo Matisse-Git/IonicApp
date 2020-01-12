@@ -169,11 +169,14 @@ body.dark {
 	--ion-item-background: #1a1b1e;
 	--color-toolbar-background: black;
 	--color-toolbar-text: white;
-  }
+}
 
-  .searchbar-input {
+.searchbar-input {
 	border-radius: 10px !important;
 	border: solid 0.2px #464545 !important;
 	background-color: #202020 !important;
   }
 
+ion-action-sheet{
+    --color: #2fdf75 !important;
+}

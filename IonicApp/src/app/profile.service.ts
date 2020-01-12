@@ -15,6 +15,7 @@ export class ProfileService {
   currentYet: IGame[] = [];
   currentOwned: IGame[] = [];
   currentCollections: IGame[] = [];
+  currentFavorite: IGame[] =[];
   currentProfile: IUser;
   rawger: any;
   users: any;
@@ -61,7 +62,7 @@ export class ProfileService {
     this.currentYet = await this.getNext('yet', this.currentYet)
     this.currentCollections = (await users(this.username).collections()).raw()
   }
-  
+
   async updateGameStatus(gameID: string, status: string){
     var rawger = await Rawger({
       email: this.email,
@@ -94,6 +95,10 @@ export class ProfileService {
 
   async getProfile(){
     return this.currentProfile;
+  }
+
+  getFavorites(){
+    return this.currentFavorite;
   }
 
   getPlaying(){

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -23,6 +24,8 @@ import { MyreleasesComponent } from './myreleases/myreleases.component';
 import { LoginpopoverComponent } from './loginpopover/loginpopover.component';
 import { LoginComponent } from './login/login.component';
 import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
+import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { I18nSelectPipe } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent, GamedetailsComponent, SearchpressComponent, 
@@ -31,10 +34,11 @@ import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
   entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent,
   MyreleasesComponent, MostanticipatedComponent, LoginpopoverComponent, LoginComponent, Gamedetails2Page],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, 
-    LongPressModule, IonicModule, FormsModule],
+    LongPressModule, IonicModule, FormsModule, RouterModule],
   providers: [
     StatusBar,
     SplashScreen,
+    VideoPlayer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig}
   ],
@@ -62,6 +66,8 @@ export interface IGame{
   background_image: String; 
   platforms: IPlatforms[];
   metacritic_url: String;
+  developers: IDevelopers[];
+  clip: IClip;
   score: number;
   playstation: boolean;
   xbox: boolean;
@@ -84,6 +90,25 @@ export interface IGame{
   OKT: boolean;
   NOV: boolean;
   DEC: boolean;
+}
+
+export interface IClip{
+  clip: string;
+  clips: IClips;
+  preview: string;
+}
+
+export interface IClips{
+  320: string;
+  640: string;
+  full: string;
+}
+
+export interface IDevelopers{
+  id: number;
+  name: String;
+  games_count: number;
+  image_background: String;
 }
 
 export interface IScreenshotsResult{

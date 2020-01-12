@@ -1,16 +1,23 @@
-ion-title{
-    text-align: center;
+#titleheader{
     font-size: 14pt;
     margin: auto;
+    text-align: center;
 }
 
 ion-button{
     --box-shadow: none !important;
+    --padding-end: 0.5em !important;
+    --padding-start: 0 !important;
 }
 ion-button:hover{
     ion-icon{
         color: #10dc60 !important;
     }
+}
+
+#showButton{
+    margin-top: -0.5em;
+    color: #10dc60;
 }
 
 ion-content{
@@ -22,6 +29,12 @@ ion-content{
     --border-color: #10dc60 !important; 
 }
 
+#bigtitleheader{
+    font-size: 20pt;
+    text-align: center;
+    margin-top: 0.3em;
+}
+
 .descriptionText{
     color: white !important;
     opacity: 100%;
@@ -30,9 +43,23 @@ ion-content{
     height: fit-content;
     font-size: 10pt;
 }
-
+.card{
+    margin: 1em;
+}
+.card ion-row{
+    border-left: #10dc60 0.5px solid;
+    border-right:  #10dc60 0.5px solid;
+}
+div, ion-text{
+    //border: solid white 1px;
+}
 ion-grid, ion-col, ion-row{
-    border: solid white 1px;
+    //border: solid white 1px;
+    margin: 0;
+}
+
+.col1{
+    text-align: end;
 }
 
 ion-action-sheet{
@@ -41,6 +68,13 @@ ion-action-sheet{
 
 .labelHeader{
     font-size: 11pt;
+    font-weight: bolder;
+}
+a{
+    text-decoration: none;
+}
+.labelHeader2{
+    font-size: 10pt;
     font-weight: bolder;
 }
 
@@ -56,12 +90,6 @@ ion-card-header{
     background: rgba(0, 0, 0, 0.356) !important;
 }
 
-#changeStatusButton{
-    --padding-bottom: 0 !important;
-    width: fit-content;
-    height: fit-content;
-}
-
 .cover{
     width: 100%;
     height: 100%;
@@ -71,6 +99,8 @@ ion-card-header{
     opacity: 48%;
     filter: blur(10px);
 }
+
+
 
 ion-card{
     --background: #1d1d1d !important;
@@ -84,6 +114,11 @@ ion-segment-button{
     height: 2em;
     font-size: 10pt;
     --border-radius: 2em
+}
+
+.clipcard{
+    font-weight: bold;
+    font-family: 'raleway';
 }
 
 .platformName{

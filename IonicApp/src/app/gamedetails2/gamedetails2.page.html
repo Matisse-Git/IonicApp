@@ -4,13 +4,18 @@
     <ion-buttons slot="start">
       <ion-back-button color="success"></ion-back-button>
     </ion-buttons>
-    <ion-title>
+    <ion-title id="titleheader">
       {{currentGame.name}}
     </ion-title>
+
+    <ion-button slot="end" size="large" fill="none" mode="ios" class="ion-activatable" (click)="presentActionSheet()">
+      <ion-icon name="add"></ion-icon>
+    </ion-button>
     <ion-button (click)="presentToast('Added to your wishlist!', 1500)"
       (click)="updateGameStatus(currentGame.id, 'toplay')" size="large" slot="end" class="wishlistButton">
       <ion-icon name="gift" [color]="wishlistButtonColor"></ion-icon>
     </ion-button>
+
   </ion-toolbar>
 </ion-header>
 
@@ -19,71 +24,150 @@
   <ion-img class="cover" [src]="currentGame.background_image">
   </ion-img>
 
-  <ion-text>
-    <ion-text class="labelHeader">
-      Description:
-    </ion-text>
-    <ion-text>
-      <ion-text>
-        <div class="descriptionText" [innerHTML]="currentGame.description"></div>
+  <div>
+    <div class="card">
+      <ion-text class="labelHeader">
+        Description:
       </ion-text>
-    </ion-text>
-  </ion-text>
+      <ion-text>
+        <ion-text>
+          <div class="descriptionText" [innerHTML]="description"></div>
+        </ion-text>
+      </ion-text>
+      <ion-button id="showButton" fill="none" (click)="showMore()">{{showMoreText}}</ion-button>
+    </div>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="3">
-        <ion-text class="labelHeader">Platforms: </ion-text>
+    <div class="clipcard" >
+      <ion-card *ngIf="this.currentGame.clip">
+        <video id="clip" width="100%" height="100%" autoplay loop muted="muted" [poster]="this.currentGame.clip.preview">
+          <source [src]="this.currentGame.clip.clips.full" type="video/mp4">
+            Something went wrong. :(
+        </video>
+      </ion-card>
+    </div>
+    
+    <ion-grid class="card">
+      <ion-row>
+        <ion-col class="col1" size="3.5">
+          <ion-text class="labelHeader2">Status: </ion-text>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-text *ngIf="currentStatus" class="descriptionText">
+              {{currentStatus}}
+            </ion-text>
+            <ion-text class="descriptionText" *ngIf="!currentStatus">
+              Not set
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col1" size="3.5">
+          <ion-text class="labelHeader2">Platforms: </ion-text>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-text class="descriptionText" *ngFor="let platforms of currentGame.platforms; let i = index">
+              {{platforms.platform.name}}
+              <ion-text *ngIf="i + 1 < currentGame.platforms.length">, </ion-text>
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col1" size="3.5">
+          <ion-text class="labelHeader2">Released: </ion-text>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-text class="descriptionText" *ngIf="currentGame.released">{{currentGame.released}}</ion-text>
+            <ion-text class="descriptionText" *ngIf="!currentGame.released">TBA</ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col1" size="3.5">
+          <ion-text class="labelHeader2">Metacritic: </ion-text>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-text class="descriptionText" *ngIf="currentGame.metacritic">{{currentGame.metacritic}}</ion-text>
+            <a *ngIf="!currentGame.metacritic" [href]="currentGame.metacritic_url" class="descriptionText">
+              <ion-text color="success">Click Here To Go To Metacritic Page</ion-text>
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col1" size="3.5">
+          <ion-text class="labelHeader2">Developers: </ion-text>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-text class="descriptionText" *ngFor="let dev of currentGame.developers; let i = index">{{dev.name}}
+              <ion-text *ngIf="i + 1 < currentGame.developers.length">, </ion-text>
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col1" size="3.5">
+          <ion-text class="labelHeader2">Publishers: </ion-text>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-text class="descriptionText" *ngFor="let publisher of currentGame.publishers; let i = index">
+              {{publisher.name}}
+              <ion-text *ngIf="i + 1 < currentGame.publishers.length">, </ion-text>
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="col1" size="3.5">
+          <ion-text class="labelHeader2">Genres: </ion-text>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-text class="descriptionText" *ngFor="let genre of currentGame.genres; let i = index">{{genre.name}}
+              <ion-text *ngIf="i + 1 < currentGame.genres.length">, </ion-text>
+            </ion-text>
+          </div>
+        </ion-col>
+      </ion-row>
+      <!--<ion-row>
+      <ion-col class="col1" size="3.5">
+        <ion-text class="labelHeader2">Tags: </ion-text>
       </ion-col>
       <ion-col>
         <div>
-          <ion-text class="descriptionText" *ngFor="let platforms of currentGame.platforms; let i = index">
-            {{platforms.platform.name}}
-            <ion-text *ngIf="i + 1 < currentGame.platforms.length">, </ion-text>
+          <ion-text class="descriptionText" *ngFor="let tag of currentGame.tags; let i = index">{{tag.name}}
+            <ion-text *ngIf="i + 1 < currentGame.tags.length">, </ion-text>
           </ion-text>
         </div>
       </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="3">
-        <ion-text class="labelHeader">Released: </ion-text>
-      </ion-col>
-      <ion-col>
-        <div>
-          <ion-text class="descriptionText" *ngIf="currentGame.released">{{currentGame.released}}</ion-text>
-          <ion-text class="descriptionText" *ngIf="!currentGame.released">TBA</ion-text>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="3">
-        <ion-text class="labelHeader">Metacritic: </ion-text>
-      </ion-col>
-      <ion-col>
-        <div>
-          <ion-text class="descriptionText" *ngIf="currentGame.metacritic">{{currentGame.metacritic}}</ion-text>
-          <a *ngIf="!currentGame.metacritic" [href]="currentGame.metacritic_url" class="descriptionText">Click Here To Go To Metacritic Page</a>
-        </div>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="3">
-        <ion-text class="labelHeader">Developers: </ion-text>
-      </ion-col>
-      <ion-col>
-        <div>
-          <ion-text class="descriptionText" *ngFor="let dev of currentGame.developers">{{dev}}</ion-text>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+    </ion-row>-->
+      <ion-row>
+        <ion-col class="col1" size="3.5">
+          <ion-text class="labelHeader2">Stores: </ion-text>
+        </ion-col>
+        <ion-col>
+          <div>
+            <a [href]="store.url" class="descriptionText" *ngFor="let store of currentGame.stores; let i = index">
+              <ion-text color="success">{{store.store.name}}</ion-text>
+              <ion-text *ngIf="i + 1 < currentGame.stores.length">, </ion-text>
+            </a>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
-  <ion-button mode="ios" id="changeStatusButton">
-    <ion-select #statusSelect [value]="currentStatus" mode="ios" interface="action-sheet"
-      (ionChange)="updateGameStatus(currentGame.id, statusSelect.value)"
-      (ionChange)="presentToast('Added to ' + statusSelect.value + '!', 1500)">
-      <ion-select-option mode="ios" *ngFor="let status of statusOptions">{{status}}</ion-select-option>
-    </ion-select>
-  </ion-button>
-
+  </div>
 </ion-content>
+
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Poppins&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
+  @import url('https://fonts.googleapis.com/css?family=Maven+Pro:700&display=swap');
+</style>
