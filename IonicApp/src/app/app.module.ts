@@ -26,15 +26,47 @@ import { LoginComponent } from './login/login.component';
 import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { I18nSelectPipe } from '@angular/common';
+import {VgCoreModule} from 'videogular2/compiled/core';
+import {VgControlsModule} from 'videogular2/compiled/controls';
+import {VgOverlayPlayModule} from 'videogular2//compiled/overlay-play';
+import {VgBufferingModule} from 'videogular2/compiled/buffering';
 
 @NgModule({
-  declarations: [AppComponent, GamedetailsComponent, SearchpressComponent, 
-    Tab2Page, SearchgenresComponent, YearlytrendingComponent,MostanticipatedComponent,MyreleasesComponent,
-    LoginpopoverComponent, LoginComponent, Gamedetails2Page],
-  entryComponents: [SearchpressComponent, Tab2Page, SearchgenresComponent, YearlytrendingComponent,
-  MyreleasesComponent, MostanticipatedComponent, LoginpopoverComponent, LoginComponent, Gamedetails2Page],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, 
-    LongPressModule, IonicModule, FormsModule, RouterModule],
+  declarations: [
+    AppComponent, 
+    GamedetailsComponent, 
+    SearchpressComponent, 
+    Tab2Page, 
+    SearchgenresComponent, 
+    YearlytrendingComponent,
+    MostanticipatedComponent,
+    MyreleasesComponent,
+    LoginpopoverComponent, 
+    LoginComponent,
+    Gamedetails2Page],
+  entryComponents: [
+    SearchpressComponent, 
+    Tab2Page, 
+    SearchgenresComponent, 
+    YearlytrendingComponent,
+    MyreleasesComponent, 
+    MostanticipatedComponent, 
+    LoginpopoverComponent, 
+    LoginComponent, 
+    Gamedetails2Page],
+  imports: [
+    BrowserModule, 
+    IonicModule.forRoot(), 
+    AppRoutingModule, 
+    HttpClientModule, 
+    LongPressModule, 
+    IonicModule, 
+    FormsModule, 
+    RouterModule,
+    VgCoreModule,    
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule],
   providers: [
     StatusBar,
     SplashScreen,
@@ -42,8 +74,12 @@ import { I18nSelectPipe } from '@angular/common';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig}
   ],
-  bootstrap: [AppComponent],
-  exports: [ SearchpressComponent ]
+  bootstrap: [
+    AppComponent,
+  ],
+  exports: [ 
+    SearchpressComponent
+  ]
 })
 export class AppModule {}
 
@@ -96,6 +132,7 @@ export interface IClip{
   clip: string;
   clips: IClips;
   preview: string;
+  video: string;
 }
 
 export interface IClips{

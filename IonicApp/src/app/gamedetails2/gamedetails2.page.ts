@@ -24,6 +24,7 @@ export class Gamedetails2Page implements OnInit {
   description: String;
   show2: boolean = false;
   showMoreText: String = "Show Less";
+  youtubeLink: string;
 
 
   constructor(private detail: GamedetailsService, private profile: ProfileService, private messages: MessagesService,
@@ -37,14 +38,20 @@ export class Gamedetails2Page implements OnInit {
       this.currentGame = this.checkStatus(this.currentGame)
       this.currentScreenshots = this.detail.getScreenshots();
       this.showMore();
+      if (this.currentGame.clip != null){
+        this.youtubeLink = 'https://www.youtube.com/watch?v=' + this.currentGame.clip.video;
+      }
       console.log(this.currentGame)
       console.log(this.currentScreenshots)
       console.log(this.currentGame.platforms.length)
     }
+    
+    //delete start here
     else {
       this.api.getGameDetailed(9767).subscribe(game => {
         this.currentGame = game;
         this.showMore();
+        this.youtubeLink = 'https://www.youtube.com/watch?v=' + this.currentGame.clip.video;
         console.log(this.currentGame)
         console.log(this.currentScreenshots)
         console.log(this.currentGame.platforms.length)
@@ -53,6 +60,8 @@ export class Gamedetails2Page implements OnInit {
         this.currentScreenshots = screenshots.results;
       })
     }
+    //delete stop here
+
     this.showBackdrop = false;
   }
 

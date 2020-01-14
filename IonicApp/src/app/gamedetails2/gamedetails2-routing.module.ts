@@ -8,6 +8,7 @@ const routes: Routes = [
     path: '',
     component: Gamedetails2Page
   }
+  //,{ path: 'screenshots', component: screenshotsComponent}
 ];
 
 @NgModule({
