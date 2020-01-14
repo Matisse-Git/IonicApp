@@ -43,6 +43,24 @@ ion-content{
     height: fit-content;
     font-size: 10pt;
 }
+.userGames[scrollx=true] {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+       display: none;
+    }
+     .scrollItem {
+       flex: 0 0 auto;
+    }
+    img{
+        height: 9*1.6em;
+        width: 16*1.6em; 
+    }
+    margin-left: 0.5;
+  }
+  
 .card{
     margin: 1em;
 }

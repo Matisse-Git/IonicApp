@@ -25,17 +25,37 @@
   </ion-img>
 
   <div class="clipcard" *ngIf="this.currentGame.clip">
-    <ion-card>
+    <ion-card *ngIf="autoplay">
       <video id="clip" width="100%" height="100%" autoplay loop [muted]="true" [poster]="this.currentGame.clip.preview">
         <source [src]="this.currentGame.clip.clips.full" type="video/mp4">
         Something went wrong. :(
       </video>
     </ion-card>
-    <ion-item lines="none" detail id="fullVideo" [href]="youtubeLink">
+    <ion-item lines="none" detail="false" id="fullVideo" [href]="youtubeLink">
       <ion-label>
         Full video
       </ion-label>
+      <ion-icon mode="ios" color="light" name="arrow-forward"></ion-icon>  
     </ion-item>
+  </div>
+
+  <ion-item lines="none" id="fullVideo" (click)="scShow = true" *ngIf="!scShow">
+    <ion-label>
+      Show Screenshots
+    </ion-label>
+    <ion-icon mode="ios" color="light" name="arrow-forward"></ion-icon>  
+  </ion-item>
+  <ion-item lines="none" id="fullVideo" (click)="scShow = false" *ngIf="scShow">
+    <ion-label>
+      Hide Screenshots
+    </ion-label>
+    <ion-icon mode="ios" color="light" name="arrow-down"></ion-icon>  
+  </ion-item>
+
+<div class="userGames" scrollX="true" scrollY="false" *ngIf="scShow">
+    <ion-card class="scrollItem" *ngFor="let sc of currentScreenshots">
+      <img class="gameBackground" [src]="sc.image">
+    </ion-card>
   </div>
 
   <div>

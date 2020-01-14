@@ -6,6 +6,7 @@ import { MessagesService } from '../messages.service';
 import { IScreenshot, IGame } from '../app.module';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { ActionSheetController } from '@ionic/angular';
+import { SettingsService } from '../settings.service';
 
 @Component({
   selector: 'app-gamedetails2',
@@ -25,13 +26,20 @@ export class Gamedetails2Page implements OnInit {
   show2: boolean = false;
   showMoreText: String = "Show Less";
   youtubeLink: string;
+  scShow: boolean;
+  autoplay: boolean;
 
 
   constructor(private detail: GamedetailsService, private profile: ProfileService, private messages: MessagesService,
-    private api: APIService, private videoPlayer: VideoPlayer, public actionSheetController: ActionSheetController) { }
+    private api: APIService, private videoPlayer: VideoPlayer, public actionSheetController: ActionSheetController
+    , private settings: SettingsService) { }
 
   async ngOnInit() {
     this.showBackdrop = true;
+    this.scShow = this.settings.scShow;
+    console.log(this.scShow)
+    this.autoplay = this.settings.autoplay;
+    console.log(this.autoplay)
     this.initializeOptions();
     if (this.detail.getScreenshots() != null && this.detail.getGame() != null) {
       this.currentGame = await this.detail.getGame();
@@ -45,7 +53,7 @@ export class Gamedetails2Page implements OnInit {
       console.log(this.currentScreenshots)
       console.log(this.currentGame.platforms.length)
     }
-    
+
     //delete start here
     else {
       this.api.getGameDetailed(9767).subscribe(game => {

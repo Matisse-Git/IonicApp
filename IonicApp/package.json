@@ -25,6 +25,7 @@
     "@ionic-native/status-bar": "^5.18.0",
     "@ionic-native/video-player": "^5.19.1",
     "@ionic/angular": "^4.7.1",
+    "@ionic/storage": "^2.2.0",
     "@types/hammerjs": "^2.0.36",
     "cordova-android": "8.1.0",
     "core-js": "^2.5.4",

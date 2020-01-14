@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            Settings
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+    <ion-list>
+        <ion-item-divider>Game Details</ion-item-divider>
+        <ion-item-group>
+            <ion-item>
+                <ion-label>Show Screenshots</ion-label>
+                <ion-toggle #scToggle mode='md' [checked]="scShow" (ionChange)="changeSc(scToggle.checked)">
+                </ion-toggle>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Show Clip</ion-label>
+                <ion-toggle #autoplayToggle mode='md' [checked]="autoplay" (ionChange)="changeAutoplay(autoplayToggle.checked)">
+                </ion-toggle>
+            </ion-item>
+        </ion-item-group>
+    </ion-list>
+
+</ion-content>
