@@ -36,7 +36,7 @@ export class APIService {
   }
 
   getGameScreenshots(gameID: number){
-    return this.client.get<IScreenshotsResult>(`https://api.rawg.io/api/games/${gameID}/screenshots`)
+    return this.client.get<IScreenshotsResult>(`https://api.rawg.io/api/games/${gameID}/screenshots?page=1`)
   }
 
   searchGames(query: String){

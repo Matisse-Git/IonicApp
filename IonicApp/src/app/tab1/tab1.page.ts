@@ -10,6 +10,7 @@ import { MessagesService } from '../messages.service';
 import { PopoverController } from '@ionic/angular';
 import { LoginpopoverComponent } from '../loginpopover/loginpopover.component';
 import { MethodService } from '../method.service';
+import { SettingsService } from '../settings.service';
 var Rawger = require('rawger');
 declare var require: any
 
@@ -21,7 +22,7 @@ declare var require: any
 export class Tab1Page {
 
   constructor(private router: Router, private statusBar: StatusBar, private profile: ProfileService, 
-  private popoverController: PopoverController, private methods: MethodService) {
+  private popoverController: PopoverController, private methods: MethodService, private settings: SettingsService) {
     this.statusBar.hide()
   }
 
@@ -37,6 +38,8 @@ export class Tab1Page {
   today: any;
 
   async ngOnInit() {
+    await this.settings.getSetting('autoplaySetting');
+    await this.settings.getSetting('scShowSetting');
     if (this.profile.username != null) {
       await this.profile.refreshAll();
       this.currentProfile = await this.profile.getProfile()
