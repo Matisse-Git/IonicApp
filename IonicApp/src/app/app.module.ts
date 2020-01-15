@@ -31,6 +31,8 @@ import {VgControlsModule} from 'videogular2/compiled/controls';
 import {VgOverlayPlayModule} from 'videogular2//compiled/overlay-play';
 import {VgBufferingModule} from 'videogular2/compiled/buffering';
 import { IonicStorageModule } from '@ionic/storage';
+import { ModalPipe } from './modal.pipe';
+import { ModalPageModule } from './modal/modal.module';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MyreleasesComponent,
     LoginpopoverComponent, 
     LoginComponent,
-    Gamedetails2Page],
+    Gamedetails2Page,
+    ModalPipe],
   entryComponents: [
     SearchpressComponent, 
     Tab2Page, 
@@ -54,7 +57,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MostanticipatedComponent, 
     LoginpopoverComponent, 
     LoginComponent, 
-    Gamedetails2Page],
+    Gamedetails2Page
+    ],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
@@ -68,7 +72,8 @@ import { IonicStorageModule } from '@ionic/storage';
     VgControlsModule,
     VgOverlayPlayModule,
     VgBufferingModule,
-    IonicStorageModule.forRoot()],
+    IonicStorageModule.forRoot(),
+    ModalPageModule],
   providers: [
     StatusBar,
     SplashScreen,
