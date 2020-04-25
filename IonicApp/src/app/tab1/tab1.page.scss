@@ -4,9 +4,6 @@ ion-header{
 ion-list-header{
   color: white;
 }
-ion-title{
-  margin-left: 2em;
-}
 
 ion-text{
   font-size: 15pt;
@@ -14,11 +11,12 @@ ion-text{
   color: white;
 }
 
-ion-label{
-  margin-left: 0.5em;
-  font-size: 20pt;
-  font-family: 'raleway';
-  display: inline-block;
+ion-item{
+  --background: transparent !important;
+  ion-label{
+    font-size: 20pt;
+    font-family: 'raleway';
+  }
 }
 
 .loadingText{
@@ -119,6 +117,50 @@ ion-list-header{
 .releaseButtonLabel{
   font-family: 'raleway';
   text-transform: capitalize;
+}
+
+ion-skeleton-text { 
+  --background-rgb: 224, 224, 224; 
+}
+
+ion-grid{
+  padding-bottom: 2em;
+  border-bottom: solid #10dc60 1px;
+}
+
+#myReleasesSkeleton{
+  height: 3em;
+  margin-top: 0.5em;
+}
+
+#titleSkeleton{
+  height: 3em;
+}
+
+#gameCardSkeleton{
+  margin-left: 1em;
+  height: 13.5em;
+}
+
+#gameCardsSkeleton {
+  margin-top: 0.7em;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+     display: none;
+  }
+  #gameCardSkeleton{
+    margin-left: 1em;
+    height: 13.5em;
+    flex: 0 0 auto;
+  }
+  margin-left: 0.5;
+}
+
+#myReleasesSkeleton, #usernameSkeleton, #titleSkeleton, #gameCardSkeleton{
+  border-radius: 1em;
 }
 
 

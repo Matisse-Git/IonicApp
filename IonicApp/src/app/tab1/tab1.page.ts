@@ -11,6 +11,9 @@ import { PopoverController } from '@ionic/angular';
 import { LoginpopoverComponent } from '../loginpopover/loginpopover.component';
 import { MethodService } from '../method.service';
 import { SettingsService } from '../settings.service';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
+
 var Rawger = require('rawger');
 declare var require: any
 
@@ -21,8 +24,9 @@ declare var require: any
 })
 export class Tab1Page {
 
-  constructor(private router: Router, private statusBar: StatusBar, private profile: ProfileService, 
-  private popoverController: PopoverController, private methods: MethodService, private settings: SettingsService) {
+  constructor(private router: Router, private statusBar: StatusBar, private profile: ProfileService,
+    private popoverController: PopoverController, private methods: MethodService, private settings: SettingsService,
+    public modalController: ModalController) {
     this.statusBar.hide()
   }
 
@@ -40,8 +44,30 @@ export class Tab1Page {
   async ngOnInit() {
     await this.settings.getSetting('autoplaySetting');
     await this.settings.getSetting('scShowSetting');
-    if (this.profile.username != null) {
+    await this.settings.getSetting('loggedInSetting');
+    if (!this.settings.loggedIn){
+      await this.presentModal();
+    }
+    this.initializeThings();
+  }
+
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage
+    });
+    await modal.present();
+    const { data }  = await modal.onDidDismiss();
+    console.log(data.dismissed)
+    return data.dismissed;
+  }
+
+  async initializeThings(){
+    console.log('start initialize')
       await this.profile.refreshAll();
+      console.log(this.profile.username)
+      console.log(this.profile.email)
+      console.log(this.profile.password)
       this.currentProfile = await this.profile.getProfile()
       this.currentPlaying = this.profile.getPlaying()
       this.currentToPlay = this.profile.getToPlay()
@@ -49,7 +75,7 @@ export class Tab1Page {
       this.currentDropped = this.profile.getDropped()
       this.currentYet = this.profile.getYet()
       this.currentCollections = this.profile.getCollections()
-    }
+
   }
 
   async doRefresh(event) {
@@ -71,7 +97,7 @@ export class Tab1Page {
     this.methods.goToDetails(gameIn);
   }
 
-  goToLogin(){
+  goToLogin() {
     this.router.navigate(['login'])
     console.log("routed")
   }
@@ -81,7 +107,7 @@ export class Tab1Page {
     console.log("routed")
   }
 
-  async createPopover(ev){
+  async createPopover(ev) {
     const popover = await this.popoverController.create({
       component: LoginpopoverComponent,
       event: ev,

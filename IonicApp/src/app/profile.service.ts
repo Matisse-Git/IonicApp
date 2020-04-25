@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { IUser, IGame } from './app.module';
+import { Storage } from '@ionic/storage';
+
 var Rawger = require('rawger');
 declare var require: any
 
@@ -20,11 +22,11 @@ export class ProfileService {
   rawger: any;
   users: any;
 
-  username: string = 'matttske';
-  email: string = 'matttske@gmail.com';
-  password: string = 'Simbaenkiara<3';
+  username: string;
+  email: string;
+  password: string;
 
-  constructor() { }
+  constructor(private storage: Storage) { }
 
   async ngOnInit(){
     var rawger = await Rawger({
@@ -32,6 +34,7 @@ export class ProfileService {
       password: this.password
     });
     var { users } = rawger;
+    console.log(users)
 
     this.currentProfile = (await users(this.username).profile()).get();
     this.currentPlaying = (await users(this.username).games('playing')).raw()
@@ -42,12 +45,42 @@ export class ProfileService {
     this.currentCollections = (await users(this.username).collections()).raw()
   }
 
+
+  setUsername(username: string){
+    this.username = username;
+    this.storage.set('username', username)
+  }
+
+  setEmail(email: string){
+    this.email = email;
+    this.storage.set('email', email)
+  }
+
+  setPassword(password: string){
+    this.password = password;
+    this.storage.set('password', password)
+  }
+
   async refreshAll(){
+    await this.storage.get('username').then((value) => {
+      this.username = value
+    })
+    await this.storage.get('email').then((value) => {
+      this.email = value
+    })
+    await this.storage.get('password').then((value) => {
+      this.password = value
+    })
+
     var rawger = await Rawger({
       email: this.email,
       password: this.password
     });
     var { users } = rawger;
+    console.log(users)
+
+
+
 
     this.currentProfile = (await users(this.username).profile()).get();
     this.currentPlaying = (await users(this.username).games('playing')).raw()
@@ -69,6 +102,8 @@ export class ProfileService {
       password: this.password
     });
     var { users } =  rawger
+    console.log(users)
+
     console.log("update begin")
     await users(this.username).update().game(gameID, { status: status});
     console.log("update complete")

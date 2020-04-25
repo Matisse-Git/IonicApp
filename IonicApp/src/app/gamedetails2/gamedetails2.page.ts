@@ -28,6 +28,7 @@ export class Gamedetails2Page implements OnInit {
   youtubeLink: string;
   scShow: boolean;
   autoplay: boolean;
+  showMoreButton: boolean;
 
 
   constructor(private detail: GamedetailsService, private profile: ProfileService, private messages: MessagesService,
@@ -78,11 +79,21 @@ export class Gamedetails2Page implements OnInit {
       console.log("Show More Clicked")
       this.description = this.currentGame.description;
       this.showMoreText = "Show Less"
+      this.showMoreButton = true;
     }
     else if (this.showMoreText == "Show Less"){
       console.log("Show Less Clicked")
-      this.description = this.currentGame.description.slice(0,250) + "...";
-      this.showMoreText = "Show More"
+      if (this.currentGame.description.length >= 250){
+        console.log("enough characters ->" + this.currentGame.description.length.toString())
+        this.description = this.currentGame.description.slice(0,250) + "...";
+        this.showMoreText = "Show More"
+        this.showMoreButton = true;
+      }
+      else{
+        console.log("not enough characters in description ->" + this.currentGame.description.length.toString())
+        this.description = this.currentGame.description;
+        this.showMoreButton = false;
+      }
     }
     
   }
@@ -96,24 +107,28 @@ export class Gamedetails2Page implements OnInit {
         icon: 'checkbox-outline',
         handler: () => {
           this.profile.updateGameStatus(this.currentGame.id.toString(), 'beaten')
+          this.messages.presentToast(`${this.currentGame.name} updated to 'Completed'!`, 2000)
         }
       }, {
         text: 'Playing',
         icon: 'play',
         handler: () => {
           this.profile.updateGameStatus(this.currentGame.id.toString(), 'playing')
+          this.messages.presentToast(`${this.currentGame.name} updated to 'Playing'!`, 2000)
         }
       }, {
         text: 'Yet To Play',
         icon: 'clock',
         handler: () => {
           this.profile.updateGameStatus(this.currentGame.id.toString(), 'yet')
+          this.messages.presentToast(`${this.currentGame.name} updated to 'Yet To Play'!`, 2000)
         }
       }, {
         text: 'Dropped',
         icon: 'close',
         handler: () => {
           this.profile.updateGameStatus(this.currentGame.id.toString(), 'dropped')
+          this.messages.presentToast(`${this.currentGame.name} updated to 'Dropped'!`, 2000)
         }
       }, {
         text: 'Cancel',

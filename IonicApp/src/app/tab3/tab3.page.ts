@@ -6,6 +6,8 @@ import { stringify } from 'querystring';
 import { GamedetailsService } from '../gamedetails.service';
 import { Router } from '@angular/router';
 import { SettingsService } from '../settings.service';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from '../modal/modal.page';
 var Rawger = require('rawger');
 
 declare var require: any
@@ -19,7 +21,7 @@ export class Tab3Page {
   autoplay: boolean;
   scShow: boolean;
 
-  constructor(private settings: SettingsService) {}
+  constructor(private settings: SettingsService, private modalController: ModalController) {}
 
   async ngOnInit() {
     await this.settings.getSetting('autoplaySetting');
@@ -29,6 +31,18 @@ export class Tab3Page {
     console.log(this.autoplay)
     console.log(this.scShow)
   }
+
+  async presentModal() {
+    this.settings.setLoggedIn(false);
+    const modal = await this.modalController.create({
+      component: ModalPage
+    });
+    await modal.present();
+    const { data }  = await modal.onDidDismiss();
+    console.log(data.dismissed)
+    return data.dismissed;
+  }
+
 
   changeAutoplay(value: boolean){
     console.log(value)

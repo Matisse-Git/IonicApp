@@ -68,7 +68,7 @@
           <div class="descriptionText" [innerHTML]="description"></div>
         </ion-text>
       </ion-text>
-      <ion-button id="showButton" fill="none" (click)="showMore()">{{showMoreText}}</ion-button>
+      <ion-button *ngIf="showMoreButton" id="showButton" fill="none" (click)="showMore()">{{showMoreText}}</ion-button>
     </div>
 
     <ion-grid class="card">
@@ -118,9 +118,10 @@
         <ion-col>
           <div>
             <ion-text class="descriptionText" *ngIf="currentGame.metacritic">{{currentGame.metacritic}}</ion-text>
-            <a *ngIf="!currentGame.metacritic" [href]="currentGame.metacritic_url" class="descriptionText">
+            <a *ngIf="!currentGame.metacritic && currentGame.metacritic_url" [href]="currentGame.metacritic_url" class="descriptionText">
               <ion-text color="success">Click Here To Go To Metacritic Page</ion-text>
             </a>
+            <ion-text class="descriptionText" *ngIf="!currentGame.metacritic_url && !currentGame.metacritic">Not Found</ion-text>
           </div>
         </ion-col>
       </ion-row>
