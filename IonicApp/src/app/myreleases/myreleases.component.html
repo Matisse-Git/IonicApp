@@ -209,7 +209,7 @@
     </ion-card>
   </div>
   <div *ngIf="currentMonth == 'dec'">
-    <div class="noGames" *ngIf="dec.length == 0">
+    <div class="noGames" *ngIf="decGames.length == 0">
       <ion-label>No games found!</ion-label>
     </div>
     <ion-card (click)="goToDetails(game)" class="item-text-wrap" mode="ios" detail="true"

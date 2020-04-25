@@ -14,21 +14,21 @@ import { SettingsService } from '../settings.service';
   styleUrls: ['./gamedetails2.page.scss'],
 })
 export class Gamedetails2Page implements OnInit {
-  private currentGame: IGame;
-  private currentScreenshots: IScreenshot[];
-  statusOptions: String[] = [];
-  currentStatus: String;
-  wishlistButtonColor: string = 'white';
-  showBackdrop: boolean;
-  currentSegment: string = 'info';
-  info: boolean = true;
-  description: String;
-  show2: boolean = false;
-  showMoreText: String = "Show Less";
-  youtubeLink: string;
-  scShow: boolean;
-  autoplay: boolean;
-  showMoreButton: boolean;
+  public currentGame: IGame;
+  public currentScreenshots: IScreenshot[];
+  public statusOptions: String[] = [];
+  public currentStatus: String;
+  public wishlistButtonColor: string = 'white';
+  public showBackdrop: boolean;
+  public currentSegment: string = 'info';
+  public info: boolean = true;
+  public description: String;
+  public show2: boolean = false;
+  public showMoreText: String = "Show Less";
+  public youtubeLink: string;
+  public scShow: boolean;
+  public autoplay: boolean;
+  public showMoreButton: boolean;
 
 
   constructor(private detail: GamedetailsService, private profile: ProfileService, private messages: MessagesService,
@@ -198,13 +198,13 @@ export class Gamedetails2Page implements OnInit {
 
   }
 
-  async updateGameStatus(gameID: string, gameStatus: string) {
+  async updateGameStatus(gameID: number, gameStatus: string) {
     if (gameStatus == "toplay") {
       this.wishlistButtonColor = 'success'
-      await this.profile.updateGameStatus(gameID, 'toplay')
+      await this.profile.updateGameStatus(gameID.toString(), 'toplay')
     }
     else {
-      await this.profile.updateGameStatus(gameID, gameStatus)
+      await this.profile.updateGameStatus(gameID.toString(), gameStatus)
     }
     console.log(gameID.toString() + " updated to " + gameStatus.toString())
     this.profile.refreshAll();

@@ -23,9 +23,6 @@
       </ion-button>
     </div>
 
-    <ion-reorder-group (ionItemReorder)="doReorder($event)" disabled="false">
-      <br>
-
       <ion-item lines="none">
         <ion-label>Currently Playing</ion-label>
         <ion-badge color="success" slot="end" mode="ios">{{currentPlaying.length}}</ion-badge>
@@ -96,7 +93,6 @@
           <img class="gameBackground" [src]="dropped.background_image">
         </ion-card>
       </div>
-    </ion-reorder-group>
   </div>
 
   <div *ngIf="!currentProfile">
