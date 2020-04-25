@@ -47,11 +47,8 @@ export class Tab1Page {
     await this.settings.getSetting('loggedInSetting');
     if (!this.settings.loggedIn){
       await this.presentModal();
-      this.initializeThings();
     }
-    else{
-      this.initializeThings();
-    }
+    this.initializeThings();
   }
 
 

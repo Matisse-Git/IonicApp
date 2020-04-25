@@ -22,15 +22,6 @@ export class MessagesService {
     toast.present();
   }
 
-async presentPopover(ev: any) {
-    const popover = await this.popoverController.create({
-      component: Tab1Page,
-      event: ev,
-      translucent: true
-    });
-    return await popover.present();
-  }
-
   async presentLoading() {
       const loading = await this.loadingController.create({
         message: 'Searching...',

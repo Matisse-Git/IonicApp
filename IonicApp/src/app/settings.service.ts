@@ -16,10 +16,20 @@ export class SettingsService {
     await this.storage.get(name).then((value) => {
       switch (name) {
         case "autoplaySetting":
-          this.autoplay = value;
+          if (value != null){
+            this.autoplay = value;
+          }
+          else{
+            this.autoplay = true;
+          }
           break;
         case "scShowSetting":
-          this.scShow = value;
+          if (value != null){
+            this.scShow = value;
+          }
+          else{
+            this.scShow = true;
+          }
           break;
         case "loggedInSetting":
           if (value != null){
