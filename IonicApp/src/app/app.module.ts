@@ -33,6 +33,7 @@ import {VgBufferingModule} from 'videogular2/compiled/buffering';
 import { IonicStorageModule } from '@ionic/storage';
 import { ModalPipe } from './modal.pipe';
 import { ModalPageModule } from './modal/modal.module';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { ModalPageModule } from './modal/modal.module';
     MostanticipatedComponent, 
     LoginpopoverComponent, 
     LoginComponent, 
-    Gamedetails2Page
+    Gamedetails2Page,
     ],
   imports: [
     BrowserModule, 
@@ -75,6 +76,7 @@ import { ModalPageModule } from './modal/modal.module';
     IonicStorageModule.forRoot(),
     ModalPageModule],
   providers: [
+    DatePipe,
     StatusBar,
     SplashScreen,
     VideoPlayer,

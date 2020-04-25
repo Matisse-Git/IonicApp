@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AngularDelegate } from '@ionic/angular';
 import { IGame, IResults, IScreenshotsResult } from './app.module';
+import { DatePipe } from '@angular/common';
 
 
 @Injectable({
@@ -11,11 +12,15 @@ import { IGame, IResults, IScreenshotsResult } from './app.module';
 
 export class APIService {
 
-  constructor(private client:HttpClient) { }
+  constructor(private client:HttpClient, private datePipe: DatePipe) { }
 
 
   getMostAnticipatedGames(page: number){
-    return this.client.get<IResults>("https://api.rawg.io/api/games?dates=2020-01-01,2022-10-10&ordering=-added&page=" + page);
+    var today = Date.now();
+    var todayString;
+    todayString = this.datePipe.transform(today, 'yyyy-MM-dd');
+    console.log(todayString);
+    return this.client.get<IResults>("https://api.rawg.io/api/games?dates=" + todayString + ",2022-10-10&ordering=-added&page=" + page);
   }
 
   getGames(){

@@ -20,19 +20,19 @@ export class MostanticipatedComponent implements OnInit {
   }
 
   currentGames: IGame[] = [];
-  currentPage : number = 1;
+  currentPage: number = 1;
   skeleton: boolean;
   skeletonItems: String[] = [];
 
-  getGames(year: number){
+  getGames(year: number) {
     this.skeleton = true;
-    this.service.getMostAnticipatedGames(this.currentPage).subscribe(games =>{
+    this.service.getMostAnticipatedGames(this.currentPage).subscribe(games => {
       this.currentGames = this.checkPlatforms(games)
       this.skeleton = false;
     })
   }
 
-  disableSkeleton(){
+  disableSkeleton() {
     this.skeleton = false;
   }
 
@@ -41,34 +41,36 @@ export class MostanticipatedComponent implements OnInit {
   }
 
 
-  scrollToTop(){
+  scrollToTop() {
     document.querySelector('ion-content').scrollToTop(2500);
   }
 
-  resetPages(){
+  resetPages() {
     this.currentPage = 1;
   }
 
-  checkPlatforms(games: IResults){
+  checkPlatforms(games: IResults) {
     games.results.forEach(element => {
-      element.platforms.forEach(platforms => {
-        if (platforms.platform.name == "PC"){
-          console.log(element.name + " --> PC")
-          element.windows = true;
-        }
-        if (platforms.platform.name == "PlayStation 4"){
-          console.log(element.name + " --> PS4")
-          element.playstation = true;
-        }
-        if (platforms.platform.name == "Xbox One"){
-          console.log(element.name + " --> XBOX")
-          element.xbox = true;
-        }
-        if (platforms.platform.name == "Nintendo Switch"){
-          console.log(element.name + " --> SWITCH")
-          element.switch = true;
-        }
-      })
+      if (element.platforms != null) {
+        element.platforms.forEach(platforms => {
+          if (platforms.platform.name == "PC") {
+            console.log(element.name + " --> PC")
+            element.windows = true;
+          }
+          if (platforms.platform.name == "PlayStation 4") {
+            console.log(element.name + " --> PS4")
+            element.playstation = true;
+          }
+          if (platforms.platform.name == "Xbox One") {
+            console.log(element.name + " --> XBOX")
+            element.xbox = true;
+          }
+          if (platforms.platform.name == "Nintendo Switch") {
+            console.log(element.name + " --> SWITCH")
+            element.switch = true;
+          }
+        })
+      }
     })
     return games.results
   }
@@ -80,19 +82,19 @@ export class MostanticipatedComponent implements OnInit {
       }
     }
     this.skeleton = true;
-}
-pushGames(event){
-  this.currentPage++;
-  setTimeout(() => {
-    console.log('Done');
-    this.service.getMostAnticipatedGames(this.currentPage).subscribe(games => {
-      var newGames: IGame[] = this.checkPlatforms(games);
-      newGames.forEach(element => {
-        this.currentGames.push(element);
-      });
-    })
-    event.target.complete();
+  }
+  pushGames(event) {
+    this.currentPage++;
+    setTimeout(() => {
+      console.log('Done');
+      this.service.getMostAnticipatedGames(this.currentPage).subscribe(games => {
+        var newGames: IGame[] = this.checkPlatforms(games);
+        newGames.forEach(element => {
+          this.currentGames.push(element);
+        });
+      })
+      event.target.complete();
 
     }, 1500);
-}
+  }
 }
