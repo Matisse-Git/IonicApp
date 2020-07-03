@@ -9,6 +9,7 @@ export class SettingsService {
   autoplay: boolean;
   scShow: boolean;
   loggedIn: boolean;
+  backgroundBlur: boolean;
 
   constructor(private storage: Storage) { }
 
@@ -40,6 +41,14 @@ export class SettingsService {
             this.storage.set('loggedInSetting', false);
           }
           break;
+        case "backgroundBlurSetting":
+          if (value != null){
+            this.backgroundBlur = value;
+          }
+          else{
+            this.backgroundBlur = true;
+            this.storage.set('backgroundBlurSetting', true);
+          }
       }
     })
   }
@@ -63,5 +72,11 @@ export class SettingsService {
     this.scShow = value;
     console.log(`scShow -> ${value}`)
     this.storage.set('scShowSetting', value);
+  }
+
+  changeBackgroundBlur(value: boolean){
+    this.backgroundBlur = value;
+    console.log(`backgroundBlur -> ${value}`);
+    this.storage.set('backgroundBlurSetting', value);
   }
 }

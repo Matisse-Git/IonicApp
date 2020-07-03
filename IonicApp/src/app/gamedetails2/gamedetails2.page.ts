@@ -29,6 +29,7 @@ export class Gamedetails2Page implements OnInit {
   public scShow: boolean;
   public autoplay: boolean;
   public showMoreButton: boolean;
+  public backgroundBlur: boolean;
 
 
   constructor(private detail: GamedetailsService, private profile: ProfileService, private messages: MessagesService,
@@ -41,6 +42,8 @@ export class Gamedetails2Page implements OnInit {
     console.log(this.scShow)
     this.autoplay = this.settings.autoplay;
     console.log(this.autoplay)
+    this.backgroundBlur = this.settings.backgroundBlur;
+    console.log(this.backgroundBlur);
     this.initializeOptions();
     if (this.detail.getScreenshots() != null && this.detail.getGame() != null) {
       this.currentGame = await this.detail.getGame();

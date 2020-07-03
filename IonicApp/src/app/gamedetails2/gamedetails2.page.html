@@ -21,7 +21,7 @@
 
 <ion-content *ngIf="currentGame">
 
-  <ion-img class="cover" [src]="currentGame.background_image">
+  <ion-img *ngIf="backgroundBlur" class="cover" [src]="currentGame.background_image">
   </ion-img>
 
   <div class="clipcard" *ngIf="this.currentGame.clip">

@@ -24,6 +24,13 @@
                     (ionChange)="changeAutoplay(autoplayToggle.checked)">
                 </ion-toggle>
             </ion-item>
+
+            <ion-item>
+                <ion-label>Use Background Blur</ion-label>
+                <ion-toggle #backgroundBlurToggle mode='md' [checked]="backgroundBlur"
+                    (ionChange)="changeBackgroundBlur(backgroundBlurToggle.checked)">
+                </ion-toggle>
+            </ion-item>
         </ion-item-group>
 
 

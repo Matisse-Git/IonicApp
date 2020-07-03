@@ -28,6 +28,8 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ModalPipe } from './modal.pipe';
 import { ModalPageModule } from './modal/modal.module';
 import { DatePipe } from '@angular/common';
+import { Tab2Page } from './tab2/tab2.page'
+import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { DatePipe } from '@angular/common';
     MyreleasesComponent,
     LoginpopoverComponent, 
     LoginComponent,
-    ModalPipe],
+    ModalPipe,
+    Tab2Page,
+    Gamedetails2Page],
   entryComponents: [
     SearchpressComponent, 
     SearchgenresComponent, 
