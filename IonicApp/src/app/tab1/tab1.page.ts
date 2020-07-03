@@ -65,9 +65,6 @@ export class Tab1Page {
   async initializeThings(){
     console.log('start initialize')
       await this.profile.refreshAll();
-      console.log(this.profile.username)
-      console.log(this.profile.email)
-      console.log(this.profile.password)
       this.currentProfile = await this.profile.getProfile()
       this.currentPlaying = this.profile.getPlaying()
       this.currentToPlay = this.profile.getToPlay()
