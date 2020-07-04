@@ -4,26 +4,20 @@ import { RouteReuseStrategy } from '@angular/router';
 import { HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { IonicModule, IonicRouteStrategy, NumericValueAccessor } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GamedetailsComponent } from './gamedetails/gamedetails.component';
 import { IonicGestureConfig } from './IonicGestureConfig';
-import { LongPressModule } from 'ionic-long-press';
 import { SearchpressComponent } from './searchpress/searchpress.component';
 import { FormsModule } from '@angular/forms';
-import { Tab2PageModule } from './tab2/tab2.module';
-import { Tab2Page } from './tab2/tab2.page';
 import { SearchgenresComponent } from './searchgenres/searchgenres.component';
 import { YearlytrendingComponent } from './yearlytrending/yearlytrending.component';
 import { MostanticipatedComponent } from './mostanticipated/mostanticipated.component';
 import { MyreleasesComponent } from './myreleases/myreleases.component';
 import { LoginpopoverComponent } from './loginpopover/loginpopover.component';
 import { LoginComponent } from './login/login.component';
-import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { I18nSelectPipe } from '@angular/common';
 import {VgCoreModule} from 'videogular2/compiled/core';
@@ -34,38 +28,36 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ModalPipe } from './modal.pipe';
 import { ModalPageModule } from './modal/modal.module';
 import { DatePipe } from '@angular/common';
+import { Tab2Page } from './tab2/tab2.page'
+import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
+import { AdMobFree } from '@ionic-native/admob-free/ngx';
+import { UserAgent } from '@ionic-native/user-agent/ngx';
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    GamedetailsComponent, 
-    SearchpressComponent, 
-    Tab2Page, 
+    AppComponent,  
+    SearchpressComponent,
     SearchgenresComponent, 
     YearlytrendingComponent,
     MostanticipatedComponent,
     MyreleasesComponent,
     LoginpopoverComponent, 
     LoginComponent,
-    Gamedetails2Page,
     ModalPipe],
   entryComponents: [
     SearchpressComponent, 
-    Tab2Page, 
     SearchgenresComponent, 
     YearlytrendingComponent,
     MyreleasesComponent, 
     MostanticipatedComponent, 
     LoginpopoverComponent, 
     LoginComponent, 
-    Gamedetails2Page,
     ],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule, 
     HttpClientModule, 
-    LongPressModule, 
     IonicModule, 
     FormsModule, 
     RouterModule,
@@ -80,6 +72,8 @@ import { DatePipe } from '@angular/common';
     StatusBar,
     SplashScreen,
     VideoPlayer,
+    AdMobFree,
+    UserAgent,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig}
   ],
@@ -112,6 +106,8 @@ export interface IGame{
   platforms: IPlatforms[];
   metacritic_url: String;
   developers: IDevelopers[];
+  publishers: IPublisher[];
+  stores: IStores;
   clip: IClip;
   score: number;
   playstation: boolean;
@@ -148,6 +144,31 @@ export interface IClips{
   320: string;
   640: string;
   full: string;
+}
+
+export interface IPublisher{
+  id: number;
+  name: string;
+  slug: string;
+  games_count: number;
+  image_background: string;
+}
+
+export interface IStore{
+  id: number;
+  name: string;
+  slug: string;
+  domain: string;
+  games_count: number;
+  image_background: string;
+}
+
+export interface IStores{
+  id: number;
+  store: IStore;
+  url_en: string;
+  url_ru: string;
+  length: number;
 }
 
 export interface IDevelopers{

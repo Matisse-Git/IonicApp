@@ -24,6 +24,13 @@
                     (ionChange)="changeAutoplay(autoplayToggle.checked)">
                 </ion-toggle>
             </ion-item>
+
+            <ion-item>
+                <ion-label>Use Background Blur</ion-label>
+                <ion-toggle #backgroundBlurToggle mode='md' [checked]="backgroundBlur"
+                    (ionChange)="changeBackgroundBlur(backgroundBlurToggle.checked)">
+                </ion-toggle>
+            </ion-item>
         </ion-item-group>
 
 
@@ -34,5 +41,12 @@
             </ion-item>
         </ion-item-group>
     </ion-list>
+
+
+    <div>
+        <p>This app was made using the Rawg.io database.</p>
+        <p>I do not own any of the images or videos nor do I have ownership of the API used for the app.</p>
+        <p>Special thanks to Orels1 for the rawger client.</p>
+    </div>
 
 </ion-content>

@@ -20,16 +20,20 @@ export class Tab3Page {
 
   autoplay: boolean;
   scShow: boolean;
+  backgroundBlur: boolean;
 
   constructor(private settings: SettingsService, private modalController: ModalController) {}
 
   async ngOnInit() {
     await this.settings.getSetting('autoplaySetting');
     await this.settings.getSetting('scShowSetting');
+    await this.settings.getSetting('backgroundBlurSetting');
     this.autoplay = this.settings.autoplay
     this.scShow = this.settings.scShow
+    this.backgroundBlur = this.settings.backgroundBlur;
     console.log(this.autoplay)
     console.log(this.scShow)
+    console.log(this.backgroundBlur);
   }
 
   async presentModal() {
@@ -54,6 +58,12 @@ export class Tab3Page {
     console.log(value)
     this.scShow = value;
     this.settings.changeSc(value)
+  }
+
+  changeBackgroundBlur(value: boolean){
+    console.log(value);
+    this.backgroundBlur = value;
+    this.settings.changeBackgroundBlur(value);
   }
 
 }

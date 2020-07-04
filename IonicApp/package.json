@@ -1,8 +1,8 @@
 {
-  "name": "IonicApp",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "name": "Rawg.io",
+  "version": "1.0.0",
+  "author": "Matisse Faes",
+  "homepage": "",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -20,14 +20,21 @@
     "@angular/platform-browser-dynamic": "~8.1.2",
     "@angular/router": "~8.1.2",
     "@capacitor/core": "1.4.0",
+    "@ionic-native/admob-free": "^5.27.0",
     "@ionic-native/core": "^5.0.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.18.0",
+    "@ionic-native/user-agent": "^5.27.0",
     "@ionic-native/video-player": "^5.19.1",
     "@ionic/angular": "^4.7.1",
     "@ionic/storage": "^2.2.0",
     "@types/hammerjs": "^2.0.36",
+    "cordova-admob-sdk": "0.24.1",
     "cordova-android": "8.1.0",
+    "cordova-plugin-admob-free": "^0.27.0",
+    "cordova-plugin-admobpro": "^2.49.0",
+    "cordova-plugin-useragent": "^1.0.6",
+    "cordova-promise-polyfill": "0.0.2",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
     "ionic-long-press": "^2.0.2",
@@ -81,7 +88,11 @@
       "cordova-plugin-ionic-webview": {
         "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
       },
-      "cordova-plugin-ionic-keyboard": {}
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-admob-free": {
+        "ADMOB_APP_ID": "<YOUR_ANDROID_ADMOB_APP_ID_AS_FOUND_IN_ADMOB>"
+      },
+      "im.ltdev.cordova.UserAgent": {}
     },
     "platforms": [
       "android"
