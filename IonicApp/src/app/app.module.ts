@@ -31,6 +31,7 @@ import { DatePipe } from '@angular/common';
 import { Tab2Page } from './tab2/tab2.page'
 import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
 import { AdMobFree } from '@ionic-native/admob-free/ngx';
+import { UserAgent } from '@ionic-native/user-agent/ngx';
 
 @NgModule({
   declarations: [
@@ -42,9 +43,7 @@ import { AdMobFree } from '@ionic-native/admob-free/ngx';
     MyreleasesComponent,
     LoginpopoverComponent, 
     LoginComponent,
-    ModalPipe,
-    Tab2Page,
-    Gamedetails2Page],
+    ModalPipe],
   entryComponents: [
     SearchpressComponent, 
     SearchgenresComponent, 
@@ -74,6 +73,7 @@ import { AdMobFree } from '@ionic-native/admob-free/ngx';
     SplashScreen,
     VideoPlayer,
     AdMobFree,
+    UserAgent,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig}
   ],
