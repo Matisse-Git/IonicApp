@@ -30,6 +30,7 @@ import { ModalPageModule } from './modal/modal.module';
 import { DatePipe } from '@angular/common';
 import { Tab2Page } from './tab2/tab2.page'
 import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
+import { AdMobFree } from '@ionic-native/admob-free/ngx';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { Gamedetails2Page } from './gamedetails2/gamedetails2.page';
     StatusBar,
     SplashScreen,
     VideoPlayer,
+    AdMobFree,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {provide: HAMMER_GESTURE_CONFIG, useClass: IonicGestureConfig}
   ],
